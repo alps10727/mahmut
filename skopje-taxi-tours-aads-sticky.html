@@ -1,0 +1,2517 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="taxi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#020617" />
+  <meta name="description" content="Skopje Taxi & Tours — Premium private taxi, airport transfers and curated North Macedonia tours. WhatsApp booking, multilingual driver." />
+  <title>Skopje Taxi & Tours | Private Taxi & Macedonia Tours</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       COLOR SYSTEM — DEEP NAVY BLUE
+       ========================================================= */
+    :root {
+      --bg-0: #02060f;
+      --bg-1: #050b1c;
+      --bg-2: #081226;
+      --bg-3: #0a1a36;
+      --bg-4: #0f2244;
+
+      --surface: rgba(15, 34, 68, 0.55);
+      --surface-2: rgba(20, 44, 86, 0.40);
+      --surface-3: rgba(30, 58, 110, 0.30);
+      --glass: rgba(8, 18, 38, 0.72);
+
+      --line: rgba(96, 165, 250, 0.16);
+      --line-2: rgba(96, 165, 250, 0.28);
+      --line-soft: rgba(255, 255, 255, 0.06);
+
+      --text: #eef4ff;
+      --text-2: #c8d6ee;
+      --muted: #8aa0c4;
+      --muted-2: #5d7196;
+      --ink: #02060f;
+
+      --brand: #3b82f6;        /* primary blue */
+      --brand-2: #1d4ed8;      /* deep blue */
+      --accent: #38bdf8;       /* sky cyan */
+      --accent-2: #0ea5e9;
+      --gold: #fbbf24;
+      --success: #22c55e;
+      --whatsapp: #25d366;
+
+      --shadow: 0 30px 90px rgba(2, 6, 15, 0.55);
+      --shadow-soft: 0 18px 50px rgba(2, 6, 15, 0.30);
+      --shadow-glow: 0 22px 70px rgba(59, 130, 246, 0.25);
+
+      --radius-xs: 12px;
+      --radius-sm: 16px;
+      --radius: 22px;
+      --radius-lg: 32px;
+      --max: 1200px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 12% 0%, rgba(59, 130, 246, 0.18), transparent 38%),
+        radial-gradient(ellipse at 88% 8%, rgba(56, 189, 248, 0.14), transparent 42%),
+        radial-gradient(ellipse at 50% 100%, rgba(29, 78, 216, 0.18), transparent 50%),
+        linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 38%, var(--bg-2) 100%);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.07;
+      z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='220' height='220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; color: inherit; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3, h4 { font-family: 'Manrope', 'Inter', sans-serif; }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =========================================================
+       NAVBAR
+       ========================================================= */
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      background: rgba(2, 6, 15, 0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 2px;
+      line-height: 1;
+    }
+    .brand-title {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.045em;
+      font-size: 20px;
+      background: linear-gradient(135deg, #ffffff 10%, #93c5fd 65%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .brand-sub {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+
+    /* Language switcher */
+    .lang {
+      position: relative;
+    }
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.10);
+      border: 1px solid var(--line);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 13px;
+      transition: 0.2s ease;
+    }
+    .lang-btn:hover { background: rgba(59, 130, 246, 0.18); border-color: var(--line-2); }
+    .lang-btn .chev { width: 10px; height: 10px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translate(-2px, -2px); transition: transform 0.2s ease; }
+    .lang.open .lang-btn .chev { transform: rotate(-135deg) translate(-2px, -2px); }
+    .flag { font-size: 16px; line-height: 1; }
+
+    .lang-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      min-width: 180px;
+      padding: 6px;
+      border-radius: 16px;
+      background: rgba(8, 18, 38, 0.95);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: 0.2s ease;
+      z-index: 90;
+    }
+    .lang.open .lang-menu { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .lang-menu button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+      text-align: left;
+      transition: background 0.15s ease;
+    }
+    .lang-menu button:hover { background: rgba(59, 130, 246, 0.15); }
+    .lang-menu button.active { background: rgba(59, 130, 246, 0.22); color: #fff; }
+    .lang-menu button .check { margin-left: auto; opacity: 0; color: var(--accent); }
+    .lang-menu button.active .check { opacity: 1; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 46px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: rgba(59, 130, 246, 0.08);
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-2px); background: rgba(59, 130, 246, 0.18); border-color: var(--line-2); }
+
+    .btn-primary {
+      color: #fff;
+      border: none;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      box-shadow: var(--shadow-glow);
+    }
+    .btn-primary:hover { background: linear-gradient(135deg, #60a5fa, var(--brand)); box-shadow: 0 26px 70px rgba(59, 130, 246, 0.35); }
+
+    .btn-whatsapp {
+      color: #052e16;
+      border: none;
+      background: linear-gradient(135deg, #4ade80, var(--whatsapp));
+      box-shadow: 0 18px 45px rgba(34, 197, 94, 0.28);
+    }
+    .btn-whatsapp:hover { background: linear-gradient(135deg, #6ee7a7, #2ed673); }
+
+    .btn-ghost { background: transparent; border: 1px solid var(--line-2); }
+    .btn-full { width: 100%; }
+
+    .mobile-cta { display: none; }
+
+    /* =========================================================
+       MODE TOGGLE — TAXI / TRAVEL
+       ========================================================= */
+    .mode-bar {
+      padding: 28px 0 8px;
+    }
+    .mode-toggle {
+      display: inline-flex;
+      gap: 6px;
+      padding: 6px;
+      border-radius: 999px;
+      background: rgba(8, 18, 38, 0.7);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+    .mode-toggle button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 28px;
+      border-radius: 999px;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: color 0.25s ease;
+      z-index: 1;
+    }
+    .mode-toggle button .ico { font-size: 18px; line-height: 1; }
+    .mode-toggle button.active { color: #fff; }
+    .mode-toggle .glider {
+      position: absolute;
+      top: 6px;
+      bottom: 6px;
+      width: calc(50% - 6px);
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      box-shadow: var(--shadow-glow);
+      transition: transform 0.35s cubic-bezier(.5,.0,.2,1);
+      z-index: 0;
+    }
+    body[data-mode="travel"] .mode-toggle .glider { transform: translateX(100%); }
+
+    /* =========================================================
+       VIEWS
+       ========================================================= */
+    .view { display: none; animation: fadeUp 0.5s ease; }
+    body[data-mode="taxi"] .view-taxi { display: block; }
+    body[data-mode="travel"] .view-travel { display: block; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+    .hero { padding: 28px 0 60px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--text-2);
+      background: rgba(59, 130, 246, 0.08);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    .pulse {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+      animation: pulse 1.8s infinite;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6.8vw, 76px);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+      max-width: 820px;
+      margin-bottom: 22px;
+      font-weight: 900;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #fff 5%, #93c5fd 50%, var(--accent) 95%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      color: var(--text-2);
+      font-size: clamp(16px, 1.4vw, 19px);
+      max-width: 600px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 690px;
+    }
+    .trust-card {
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .trust-card strong {
+      display: block;
+      color: var(--text);
+      font-size: 18px;
+      margin-bottom: 2px;
+      font-family: 'Manrope', sans-serif;
+      letter-spacing: -0.03em;
+    }
+
+    /* HERO PANEL — TAXI VARIANT */
+    .hero-panel {
+      position: relative;
+      min-height: 620px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      isolation: isolate;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)),
+        radial-gradient(circle at 28% 10%, rgba(56, 189, 248, 0.18), transparent 30%),
+        radial-gradient(circle at 76% 18%, rgba(59, 130, 246, 0.22), transparent 34%),
+        linear-gradient(135deg, var(--bg-3), var(--bg-1) 64%);
+    }
+
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.42;
+      mix-blend-mode: luminosity;
+    }
+    .hero-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(2, 6, 15, 0.20) 0%, rgba(2, 6, 15, 0.55) 60%, rgba(2, 6, 15, 0.85) 100%);
+    }
+
+    .panel-content {
+      position: relative;
+      z-index: 1;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: 620px;
+    }
+
+    .map-card {
+      padding: 18px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(8, 18, 38, 0.85), rgba(8, 18, 38, 0.65));
+      border: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .map-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .map-header span {
+      display: block;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .map-header strong {
+      font-size: 17px;
+      letter-spacing: -0.03em;
+      font-family: 'Manrope', sans-serif;
+    }
+    .map-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      color: #bbf7d0;
+      border: 1px solid rgba(34, 197, 94, 0.22);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .map-live::before {
+      content: "";
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.16);
+    }
+
+    .route {
+      position: relative;
+      height: 240px;
+      border-radius: 20px;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
+        radial-gradient(circle at 25% 26%, rgba(56,189,248,0.28), transparent 18%),
+        radial-gradient(circle at 78% 28%, rgba(251,191,36,0.20), transparent 16%),
+        radial-gradient(circle at 70% 72%, rgba(59,130,246,0.32), transparent 22%),
+        linear-gradient(135deg, rgba(15,30,61,0.6), rgba(8,18,38,0.6));
+      background-size: 32px 32px, 32px 32px, auto, auto, auto, auto;
+      border: 1px solid var(--line);
+    }
+    .route svg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      filter: drop-shadow(0 12px 22px rgba(59, 130, 246, 0.22));
+    }
+    .route-path {
+      stroke-dasharray: 900;
+      stroke-dashoffset: 900;
+      animation: drawRoute 2.6s ease forwards 0.3s;
+    }
+    .route-soft { opacity: 0.18; }
+
+    .map-place {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(2, 6, 15, 0.78);
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.30);
+      color: #f0f6ff;
+      font-size: 12px;
+      font-weight: 800;
+      backdrop-filter: blur(10px);
+      white-space: nowrap;
+    }
+    .map-place::before {
+      content: "";
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 5px rgba(251,191,36,0.16);
+    }
+    .map-place.sk { left: 7%; top: 16%; }
+    .map-place.matka { right: 8%; top: 30%; animation: floatLabel 3s ease-in-out infinite; }
+    .map-place.ohrid { left: 12%; bottom: 18%; animation: floatLabel 3.4s ease-in-out infinite 0.15s; }
+    .map-place.airport { right: 10%; bottom: 13%; }
+
+    .map-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .map-stat {
+      padding: 11px;
+      border-radius: 14px;
+      background: rgba(15, 34, 68, 0.5);
+      border: 1px solid var(--line);
+    }
+    .map-stat b {
+      display: block;
+      font-size: 15px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+    }
+    .map-stat span { color: var(--muted); font-size: 11px; font-weight: 700; }
+
+    .quick-routes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .quick-route {
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(15, 34, 68, 0.55);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+      transition: 0.22s ease;
+    }
+    .quick-route:hover {
+      transform: translateY(-3px);
+      border-color: var(--line-2);
+      background: rgba(30, 58, 110, 0.55);
+    }
+    .quick-route strong { display: block; font-size: 13px; margin-bottom: 2px; }
+    .quick-route span { color: var(--muted); font-size: 11px; font-weight: 700; }
+
+    .driver-card {
+      margin-top: auto;
+      display: grid;
+      gap: 14px;
+      padding: 22px;
+      border-radius: 24px;
+      background: rgba(238, 244, 255, 0.96);
+      color: var(--ink);
+      box-shadow: var(--shadow-soft);
+    }
+    .driver-top { display: flex; align-items: center; gap: 14px; }
+    .avatar {
+      width: 60px; height: 60px;
+      border-radius: 18px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--bg-3), var(--brand));
+      color: #fff;
+      font-weight: 900;
+      font-size: 22px;
+      box-shadow: 0 12px 28px rgba(2, 6, 15, 0.20);
+    }
+    .driver-top h3 {
+      font-size: 19px;
+      letter-spacing: -0.03em;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+    }
+    .driver-top p { color: #4a5b78; font-weight: 700; font-size: 14px; }
+    .status-line { display: flex; flex-wrap: wrap; gap: 8px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(2, 6, 15, 0.06);
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    /* =========================================================
+       SECTIONS
+       ========================================================= */
+    section { padding: 68px 0; }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .kicker {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      font-weight: 900;
+    }
+    .section-head p {
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* =========================================================
+       FEATURE GALLERY (used by Taxi & Travel views)
+       ========================================================= */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      margin-bottom: 38px;
+    }
+    .photo {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+      background: linear-gradient(135deg, var(--bg-3), var(--bg-1));
+      min-height: 220px;
+    }
+    .photo img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .photo::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(2, 6, 15, 0.85) 100%);
+    }
+    .photo:hover img { transform: scale(1.06); }
+    .photo .caption {
+      position: absolute;
+      left: 18px; right: 18px; bottom: 16px;
+      z-index: 2;
+      color: #fff;
+    }
+    .photo .caption strong {
+      display: block;
+      font-family: 'Manrope', sans-serif;
+      font-size: 18px;
+      letter-spacing: -0.025em;
+      margin-bottom: 4px;
+    }
+    .photo .caption span { color: #c8d6ee; font-size: 13px; font-weight: 700; }
+    .photo.big   { grid-column: span 7; min-height: 360px; }
+    .photo.tall  { grid-column: span 5; min-height: 360px; }
+    .photo.wide  { grid-column: span 8; }
+    .photo.small { grid-column: span 4; }
+    .photo.third { grid-column: span 4; }
+
+    /* =========================================================
+       SERVICES / EXPERIENCE
+       ========================================================= */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .service-card {
+      min-height: 360px;
+      padding: 30px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--surface), var(--surface-2));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::after {
+      content: "";
+      position: absolute;
+      right: -80px; top: -80px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.25), transparent 70%);
+    }
+    .service-icon {
+      font-size: 36px;
+      margin-bottom: 18px;
+      display: inline-flex;
+      width: 60px; height: 60px;
+      align-items: center; justify-content: center;
+      border-radius: 18px;
+      background: rgba(59, 130, 246, 0.18);
+      border: 1px solid var(--line-2);
+    }
+    .service-card h3 {
+      font-size: 26px;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+    .service-card p { color: var(--text-2); margin-bottom: 18px; max-width: 570px; }
+    .feature-list { display: grid; gap: 10px; margin: 18px 0 24px; color: var(--text-2); font-weight: 600; }
+    .feature-list li {
+      list-style: none;
+      display: flex; gap: 10px;
+      align-items: flex-start;
+      font-size: 14.5px;
+    }
+    .feature-list li::before {
+      content: "✓";
+      color: var(--accent);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    /* Experience callout — professionalism */
+    .experience-band {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .exp-card {
+      padding: 22px;
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+    .exp-num {
+      font-family: 'Manrope', sans-serif;
+      font-size: 38px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      background: linear-gradient(135deg, #fff, var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 6px;
+    }
+    .exp-card strong { display: block; font-size: 14px; margin-bottom: 4px; }
+    .exp-card span { color: var(--muted); font-size: 13px; font-weight: 600; }
+
+    /* =========================================================
+       DESTINATIONS
+       ========================================================= */
+    .destinations {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .destination {
+      min-height: 280px;
+      padding: 0;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      transition: 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .destination:hover {
+      transform: translateY(-5px);
+      border-color: var(--line-2);
+      box-shadow: var(--shadow-glow);
+    }
+    .dest-img {
+      position: relative;
+      height: 160px;
+      overflow: hidden;
+    }
+    .dest-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .destination:hover .dest-img img { transform: scale(1.08); }
+    .dest-img::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(2, 6, 15, 0.6));
+    }
+    .dest-body { padding: 18px 20px 20px; flex: 1; display: flex; flex-direction: column; }
+    .dest-body .num { color: var(--gold); font-weight: 900; font-size: 12px; letter-spacing: 0.15em; margin-bottom: 8px; }
+    .dest-body h3 {
+      font-size: 19px;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+    .dest-body p {
+      color: var(--muted);
+      font-size: 14px;
+      flex: 1;
+    }
+    .dest-tag {
+      align-self: flex-start;
+      margin-top: 12px;
+      color: var(--text-2);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.14);
+      border: 1px solid var(--line);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* =========================================================
+       BOOKING
+       ========================================================= */
+    .booking {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .booking-copy, .booking-form {
+      padding: 30px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow-soft);
+    }
+    .booking-copy h2 { margin-bottom: 14px; }
+    .booking-copy p { color: var(--muted); margin-bottom: 16px; }
+    .contact-stack { display: grid; gap: 12px; margin-top: 22px; }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      background: rgba(15, 34, 68, 0.6);
+      border: 1px solid var(--line);
+    }
+    .contact-row span { color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; }
+    .contact-row strong { font-size: 16px; }
+
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .field { display: grid; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+    label { color: var(--text-2); font-weight: 800; font-size: 13px; }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: rgba(2, 6, 15, 0.55);
+      color: var(--text);
+      border-radius: var(--radius-sm);
+      padding: 13px 14px;
+      outline: none;
+      transition: 0.2s ease;
+      font-size: 14.5px;
+    }
+    select option { background: var(--bg-2); color: var(--text); }
+    textarea { min-height: 110px; resize: vertical; }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.16);
+    }
+    .form-note { margin: 12px 0 16px; color: var(--muted); font-size: 13px; }
+
+    /* =========================================================
+       REVIEWS
+       ========================================================= */
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .review {
+      padding: 24px;
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+    .stars { color: var(--gold); letter-spacing: 2px; margin-bottom: 14px; }
+    .review p { color: var(--text-2); margin-bottom: 16px; font-size: 15px; }
+    .review strong { display: block; }
+    .review span { color: var(--muted); font-size: 13px; }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    footer {
+      padding: 44px 0 110px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .footer-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .footer-links a {
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.10);
+      border: 1px solid var(--line);
+      font-size: 13px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+    .footer-links a:hover { background: rgba(59, 130, 246, 0.20); }
+
+    /* =========================================================
+       MISC
+       ========================================================= */
+    .reveal { opacity: 0; transform: translateY(18px); animation: reveal .7s ease forwards; }
+    .delay-1 { animation-delay: .12s; }
+    .delay-2 { animation-delay: .24s; }
+    .delay-3 { animation-delay: .36s; }
+
+    @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 70% { box-shadow: 0 0 0 12px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
+    @keyframes drawRoute { to { stroke-dashoffset: 0; } }
+    @keyframes floatLabel { 50% { transform: translateY(-6px); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+    @media (max-width: 980px) {
+      .nav { height: 68px; }
+      .hero { padding-top: 24px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+      .hero-panel { min-height: 600px; }
+      .panel-content { min-height: 600px; }
+      .service-grid, .booking { grid-template-columns: 1fr; }
+      .destinations, .reviews { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .gallery { grid-template-columns: repeat(6, 1fr); }
+      .photo.big, .photo.tall, .photo.wide, .photo.small, .photo.third { grid-column: span 6; min-height: 220px; }
+      .experience-band { grid-template-columns: repeat(2, 1fr); }
+      .section-head { display: grid; }
+      .mobile-cta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        position: fixed;
+        left: 12px; right: 12px;
+        bottom: 12px;
+        z-index: 60;
+        padding: 10px;
+        border-radius: 22px;
+        background: rgba(2, 6, 15, 0.86);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+      .mobile-cta .btn { min-height: 46px; padding: 11px 10px; font-size: 14px; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(100% - 24px, var(--max)); }
+      .nav-right .btn-primary { display: none; }
+      h1 { font-size: clamp(36px, 11vw, 52px); }
+      .lead { font-size: 16px; }
+      .hero-actions .btn { width: 100%; }
+      .trust-row { grid-template-columns: 1fr; }
+      .mode-toggle button { padding: 11px 18px; font-size: 14px; }
+      .mode-toggle button .ico { font-size: 16px; }
+      .destinations, .reviews { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .contact-row { align-items: flex-start; flex-direction: column; }
+      section { padding: 50px 0; }
+      .service-card, .booking-copy, .booking-form { padding: 22px; }
+      .map-place { font-size: 10.5px; padding: 6px 9px; }
+      .map-place.sk { left: 5%; top: 14%; }
+      .map-place.matka { right: 5%; top: 34%; }
+      .map-place.ohrid { left: 7%; bottom: 18%; }
+      .map-place.airport { right: 5%; bottom: 12%; }
+      footer { padding-bottom: 110px; }
+    }
+  
+
+    /* =========================================================
+       AADS STICKY ADS — TOP + BOTTOM, AUTO REFRESH
+       ========================================================= */
+    .aads-sticky {
+      position: fixed;
+      left: 50%;
+      width: min(100%, 980px);
+      transform: translateX(-50%);
+      z-index: 99999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 92px;
+      padding: 8px 42px 8px 10px;
+      background: rgba(2, 6, 15, 0.88);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 18px 55px rgba(0,0,0,0.45);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .aads-sticky-top {
+      top: 0;
+      border-radius: 0 0 18px 18px;
+    }
+    .aads-sticky-bottom {
+      bottom: 0;
+      border-radius: 18px 18px 0 0;
+    }
+    .aads-frame {
+      display: block;
+      width: min(100%, 728px);
+      height: 90px;
+      max-width: 100%;
+      border: 0;
+      padding: 0;
+      margin: 0 auto;
+      overflow: hidden;
+      background: transparent;
+    }
+    .aads-close {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      width: 28px;
+      height: 28px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(248, 248, 249, 0.86);
+      color: #000;
+      font-size: 22px;
+      line-height: 28px;
+      font-weight: 900;
+      cursor: pointer;
+      z-index: 100000;
+    }
+    .aads-sticky.is-hidden { display: none; }
+
+    @media (max-width: 980px) {
+      .aads-sticky {
+        width: 100%;
+        min-height: 72px;
+        padding: 6px 38px 6px 8px;
+      }
+      .aads-frame { height: 64px; }
+      .aads-sticky-bottom { bottom: 82px; border-radius: 18px; width: calc(100% - 18px); }
+    }
+</style>
+</head>
+<body>
+
+  <!-- BEGIN AADS STICKY ADS 2445083 -->
+  <div class="aads-sticky aads-sticky-top" id="aadsTopWrap">
+    <button class="aads-close" type="button" aria-label="Close top ad" data-close-ad="aadsTopWrap">×</button>
+    <iframe
+      class="aads-frame"
+      data-aa="2445083"
+      data-base-src="https://acceptable.a-ads.com/2445083/?size=Adaptive&background_color=df2a2a&title_color=a95252&title_hover_color=261212&text_color=ed0a0a&link_color=5d1515&link_hover_color=b44e4e"
+      src="https://acceptable.a-ads.com/2445083/?size=Adaptive&background_color=df2a2a&title_color=a95252&title_hover_color=261212&text_color=ed0a0a&link_color=5d1515&link_hover_color=b44e4e"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+
+  <div class="aads-sticky aads-sticky-bottom" id="aadsBottomWrap">
+    <button class="aads-close" type="button" aria-label="Close bottom ad" data-close-ad="aadsBottomWrap">×</button>
+    <iframe
+      class="aads-frame"
+      data-aa="2445083"
+      data-base-src="https://acceptable.a-ads.com/2445083/?size=Adaptive&background_color=df2a2a&title_color=a95252&title_hover_color=261212&text_color=ed0a0a&link_color=5d1515&link_hover_color=b44e4e"
+      src="https://acceptable.a-ads.com/2445083/?size=Adaptive&background_color=df2a2a&title_color=a95252&title_hover_color=261212&text_color=ed0a0a&link_color=5d1515&link_hover_color=b44e4e"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+  <!-- END AADS STICKY ADS 2445083 -->
+
+  <!-- ============================ NAV ============================ -->
+  <div class="nav-wrap">
+    <nav class="container nav" aria-label="Main">
+      <a class="brand" href="#home" aria-label="Skopje Taxi & Tours">
+        <span class="brand-title">Skopje Taxi & Tours</span>
+        <span class="brand-sub" data-i18n="brand.sub">North Macedonia</span>
+      </a>
+
+      <div class="nav-right">
+        <div class="lang" id="langSwitcher">
+          <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
+            <span class="flag" id="langFlag">🇬🇧</span>
+            <span id="langLabel">EN</span>
+            <span class="chev"></span>
+          </button>
+          <div class="lang-menu" role="menu">
+            <button data-lang="en" role="menuitem"><span class="flag">🇬🇧</span><span>English</span><span class="check">✓</span></button>
+            <button data-lang="mk" role="menuitem"><span class="flag">🇲🇰</span><span>Македонски</span><span class="check">✓</span></button>
+            <button data-lang="sq" role="menuitem"><span class="flag">🇦🇱</span><span>Shqip</span><span class="check">✓</span></button>
+            <button data-lang="tr" role="menuitem"><span class="flag">🇹🇷</span><span>Türkçe</span><span class="check">✓</span></button>
+          </div>
+        </div>
+
+        <a class="btn btn-primary" href="https://wa.me/38978877955" target="_blank" rel="noopener" data-i18n="nav.cta">WhatsApp</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ====================== MODE TOGGLE ====================== -->
+  <div class="container mode-bar">
+    <div class="mode-toggle" role="tablist" aria-label="Service mode">
+      <span class="glider" aria-hidden="true"></span>
+      <button id="modeTaxi" class="active" role="tab" aria-selected="true">
+        <span class="ico">🚖</span><span data-i18n="mode.taxi">Taxi</span>
+      </button>
+      <button id="modeTravel" role="tab" aria-selected="false">
+        <span class="ico">🌍</span><span data-i18n="mode.travel">Travel</span>
+      </button>
+    </div>
+  </div>
+
+  <main id="home">
+
+    <!-- =================================================
+                       TAXI VIEW
+         ================================================= -->
+    <div class="view view-taxi">
+
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow reveal">
+              <span class="pulse"></span>
+              <span data-i18n="taxi.eyebrow">Private taxi • Airport transfer • 24/7</span>
+            </div>
+            <h1 class="reveal delay-1">
+              <span data-i18n="taxi.h1.a">Comfortable rides across</span>
+              <span class="gradient-text" data-i18n="taxi.h1.b">Skopje &amp; beyond.</span>
+            </h1>
+            <p class="lead reveal delay-2" data-i18n="taxi.lead">Door-to-door private taxi service with a professional, English-speaking driver. Clean modern vehicle, transparent pricing, and instant WhatsApp booking — anytime, day or night.</p>
+            <div class="hero-actions reveal delay-3">
+              <a class="btn btn-whatsapp" href="https://wa.me/38978877955?text=Hello%2C%20I%20would%20like%20to%20book%20a%20taxi%20in%20Skopje." target="_blank" rel="noopener">💬 <span data-i18n="taxi.cta.book">Book on WhatsApp</span></a>
+              <a class="btn" href="tel:+38978877955">📞 +389 78 877 955</a>
+            </div>
+            <div class="trust-row reveal delay-3">
+              <div class="trust-card"><strong data-i18n="trust.taxi.1.t">24/7</strong><span data-i18n="trust.taxi.1.s">Airport &amp; city rides</span></div>
+              <div class="trust-card"><strong data-i18n="trust.taxi.2.t">10+ yrs</strong><span data-i18n="trust.taxi.2.s">Driving experience</span></div>
+              <div class="trust-card"><strong data-i18n="trust.taxi.3.t">Fixed</strong><span data-i18n="trust.taxi.3.s">Transparent rates</span></div>
+            </div>
+          </div>
+
+          <aside class="hero-panel reveal delay-2" aria-label="Route preview">
+            <div class="hero-image">
+              <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=70" alt="" loading="lazy" onerror="this.style.display='none'">
+            </div>
+            <div class="panel-content">
+              <div class="map-card">
+                <div class="map-header">
+                  <div>
+                    <span data-i18n="panel.kicker">Route preview</span>
+                    <strong>Skopje • Airport • Tours</strong>
+                  </div>
+                  <div class="map-live" data-i18n="panel.online">Online</div>
+                </div>
+                <div class="route" aria-hidden="true">
+                  <svg viewBox="0 0 500 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="route-soft" d="M54 78 C140 34, 170 170, 252 124 S354 40, 425 122 S420 248, 288 244 S122 230, 92 158" stroke="#ffffff" stroke-width="14" stroke-linecap="round"/>
+                    <path class="route-path" d="M54 78 C140 34, 170 170, 252 124 S354 40, 425 122 S420 248, 288 244 S122 230, 92 158" stroke="url(#g1)" stroke-width="6" stroke-linecap="round"/>
+                    <defs>
+                      <linearGradient id="g1" x1="55" y1="70" x2="438" y2="250" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#38bdf8"/>
+                        <stop offset=".55" stop-color="#3b82f6"/>
+                        <stop offset="1" stop-color="#1d4ed8"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <span class="map-place sk" data-i18n="panel.skopje">Skopje Center</span>
+                  <span class="map-place matka" data-i18n="panel.matka">Matka Canyon</span>
+                  <span class="map-place ohrid" data-i18n="panel.ohrid">Ohrid Trip</span>
+                  <span class="map-place airport" data-i18n="panel.airport">Airport</span>
+                </div>
+                <div class="map-stats">
+                  <div class="map-stat"><b>15–25m</b><span data-i18n="panel.cityRides">City rides</span></div>
+                  <div class="map-stat"><b>30–40m</b><span data-i18n="panel.airportTr">Airport</span></div>
+                  <div class="map-stat"><b data-i18n="panel.custom">Custom</b><span data-i18n="panel.dayTours">Day tours</span></div>
+                </div>
+              </div>
+
+              <div class="quick-routes">
+                <a class="quick-route" href="https://wa.me/38978877955?text=Hello%2C%20airport%20transfer%20in%20Skopje." target="_blank" rel="noopener">
+                  <strong data-i18n="quick.airport.t">Airport transfer</strong>
+                  <span data-i18n="quick.airport.s">Pickup / drop-off</span>
+                </a>
+                <a class="quick-route" href="https://wa.me/38978877955?text=Hello%2C%20hourly%20driver%20in%20Skopje." target="_blank" rel="noopener">
+                  <strong data-i18n="quick.hour.t">Hourly driver</strong>
+                  <span data-i18n="quick.hour.s">Stay with you</span>
+                </a>
+                <a class="quick-route" href="https://wa.me/38978877955?text=Hello%2C%20intercity%20transfer." target="_blank" rel="noopener">
+                  <strong data-i18n="quick.inter.t">Intercity</strong>
+                  <span data-i18n="quick.inter.s">Long distance</span>
+                </a>
+              </div>
+
+              <div class="driver-card">
+                <div class="driver-top">
+                  <div class="avatar">M</div>
+                  <div>
+                    <h3 data-i18n="driver.title">Your private driver in Skopje</h3>
+                    <p data-i18n="driver.sub">Taxi rides, airport transfers and tours</p>
+                  </div>
+                </div>
+                <div class="status-line">
+                  <span class="badge">✓ <span data-i18n="badge.whatsapp">WhatsApp booking</span></span>
+                  <span class="badge">✓ <span data-i18n="badge.english">English-speaking</span></span>
+                  <span class="badge">✓ <span data-i18n="badge.pickup">Custom pickup</span></span>
+                </div>
+                <a class="btn btn-whatsapp btn-full" href="https://wa.me/38978877955?text=Hello%2C%20I%20want%20a%20private%20taxi." target="_blank" rel="noopener" data-i18n="driver.cta">Start a WhatsApp chat</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <div class="kicker" data-i18n="taxi.servKicker">Taxi service</div>
+              <h2 data-i18n="taxi.servTitle">Reliable, comfortable, on time.</h2>
+            </div>
+            <p data-i18n="taxi.servDesc">Private rides for airport transfers, hotel pickup, business travel and safe night-time transportation in Skopje.</p>
+          </div>
+
+          <div class="service-grid">
+            <article class="service-card">
+              <div class="service-icon">🚕</div>
+              <h3 data-i18n="taxi.s1.t">Skopje city taxi</h3>
+              <p data-i18n="taxi.s1.p">Direct private rides anywhere in Skopje — pickup from your hotel, apartment, restaurant, bus station or any custom address.</p>
+              <ul class="feature-list">
+                <li data-i18n="taxi.s1.l1">Hotel, city centre and bus-station pickup</li>
+                <li data-i18n="taxi.s1.l2">Short rides or hourly private-driver option</li>
+                <li data-i18n="taxi.s1.l3">Simple WhatsApp booking with live location</li>
+              </ul>
+              <a class="btn btn-primary" href="https://wa.me/38978877955?text=Hello%2C%20I%20need%20a%20taxi%20in%20Skopje." target="_blank" rel="noopener" data-i18n="taxi.s1.cta">Book taxi</a>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon">✈️</div>
+              <h3 data-i18n="taxi.s2.t">Airport transfer</h3>
+              <p data-i18n="taxi.s2.p">Stress-free transfers between Skopje International Airport and your hotel or destination. Just share your flight time and we handle the rest.</p>
+              <ul class="feature-list">
+                <li data-i18n="taxi.s2.l1">Arrival meet &amp; greet with your name</li>
+                <li data-i18n="taxi.s2.l2">Live flight tracking — no waiting fees on delays</li>
+                <li data-i18n="taxi.s2.l3">Private vehicle for your group and luggage</li>
+              </ul>
+              <a class="btn btn-primary" href="https://wa.me/38978877955?text=Hello%2C%20I%20need%20an%20airport%20transfer." target="_blank" rel="noopener" data-i18n="taxi.s2.cta">Book transfer</a>
+            </article>
+          </div>
+
+          <div class="experience-band">
+            <div class="exp-card">
+              <div class="exp-num">10+</div>
+              <strong data-i18n="exp.years.t">Years on the road</strong>
+              <span data-i18n="exp.years.s">Local Skopje experience</span>
+            </div>
+            <div class="exp-card">
+              <div class="exp-num">5★</div>
+              <strong data-i18n="exp.rating.t">Guest rating</strong>
+              <span data-i18n="exp.rating.s">Punctual &amp; friendly</span>
+            </div>
+            <div class="exp-card">
+              <div class="exp-num">4</div>
+              <strong data-i18n="exp.lang.t">Languages</strong>
+              <span data-i18n="exp.lang.s">EN · MK · SQ · TR</span>
+            </div>
+            <div class="exp-card">
+              <div class="exp-num">0€</div>
+              <strong data-i18n="exp.fees.t">Hidden fees</strong>
+              <span data-i18n="exp.fees.s">Quoted before pickup</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    <!-- ============== END TAXI VIEW ============== -->
+
+    <!-- =================================================
+                       TRAVEL VIEW
+         ================================================= -->
+    <div class="view view-travel">
+
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow reveal">
+              <span class="pulse"></span>
+              <span data-i18n="travel.eyebrow">Curated tours • Private guide • Flexible routes</span>
+            </div>
+            <h1 class="reveal delay-1">
+              <span data-i18n="travel.h1.a">Discover Macedonia with a</span>
+              <span class="gradient-text" data-i18n="travel.h1.b">local who knows it.</span>
+            </h1>
+            <p class="lead reveal delay-2" data-i18n="travel.lead">From the turquoise water of Matka Canyon to the cobbled streets of Ohrid — travel at your own pace with a private driver-guide who speaks your language and knows the country by heart.</p>
+            <div class="hero-actions reveal delay-3">
+              <a class="btn btn-whatsapp" href="https://wa.me/38978877955?text=Hello%2C%20I%27m%20interested%20in%20a%20private%20tour." target="_blank" rel="noopener">💬 <span data-i18n="travel.cta.plan">Plan my tour</span></a>
+              <a class="btn" href="#travel-destinations" data-i18n="travel.cta.see">See destinations</a>
+            </div>
+            <div class="trust-row reveal delay-3">
+              <div class="trust-card"><strong data-i18n="trust.travel.1.t">Private</strong><span data-i18n="trust.travel.1.s">No crowded groups</span></div>
+              <div class="trust-card"><strong data-i18n="trust.travel.2.t">Flexible</strong><span data-i18n="trust.travel.2.s">Custom itinerary</span></div>
+              <div class="trust-card"><strong data-i18n="trust.travel.3.t">Local</strong><span data-i18n="trust.travel.3.s">Insider tips &amp; food</span></div>
+            </div>
+          </div>
+
+          <aside class="hero-panel reveal delay-2" aria-label="Destinations preview">
+            <div class="hero-image">
+              <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=70" alt="" loading="lazy" onerror="this.style.display='none'">
+            </div>
+            <div class="panel-content">
+              <div class="map-card">
+                <div class="map-header">
+                  <div>
+                    <span data-i18n="travel.panel.kicker">Featured tour</span>
+                    <strong data-i18n="travel.panel.title">Matka • Skopje • Ohrid</strong>
+                  </div>
+                  <div class="map-live" data-i18n="panel.online">Online</div>
+                </div>
+                <div class="route" aria-hidden="true">
+                  <svg viewBox="0 0 500 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="route-soft" d="M54 78 C140 34, 170 170, 252 124 S354 40, 425 122 S420 248, 288 244 S122 230, 92 158" stroke="#ffffff" stroke-width="14" stroke-linecap="round"/>
+                    <path class="route-path" d="M54 78 C140 34, 170 170, 252 124 S354 40, 425 122 S420 248, 288 244 S122 230, 92 158" stroke="url(#g2)" stroke-width="6" stroke-linecap="round"/>
+                    <defs>
+                      <linearGradient id="g2" x1="55" y1="70" x2="438" y2="250" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#38bdf8"/>
+                        <stop offset=".55" stop-color="#fbbf24"/>
+                        <stop offset="1" stop-color="#3b82f6"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <span class="map-place sk" data-i18n="panel.skopje">Skopje Center</span>
+                  <span class="map-place matka" data-i18n="panel.matka">Matka Canyon</span>
+                  <span class="map-place ohrid" data-i18n="panel.ohrid">Ohrid Trip</span>
+                  <span class="map-place airport" data-i18n="panel.airport">Airport</span>
+                </div>
+                <div class="map-stats">
+                  <div class="map-stat"><b>4–5h</b><span data-i18n="travel.stat.matka">Matka half-day</span></div>
+                  <div class="map-stat"><b>1 day</b><span data-i18n="travel.stat.ohrid">Ohrid full</span></div>
+                  <div class="map-stat"><b data-i18n="panel.custom">Custom</b><span data-i18n="travel.stat.multi">Multi-day</span></div>
+                </div>
+              </div>
+
+              <div class="quick-routes">
+                <a class="quick-route" href="https://wa.me/38978877955?text=Hello%2C%20Matka%20Canyon%20tour." target="_blank" rel="noopener">
+                  <strong>Matka Canyon</strong>
+                  <span data-i18n="travel.q.matka">Half-day · boats &amp; caves</span>
+                </a>
+                <a class="quick-route" href="https://wa.me/38978877955?text=Hello%2C%20Ohrid%20day%20trip." target="_blank" rel="noopener">
+                  <strong>Ohrid Lake</strong>
+                  <span data-i18n="travel.q.ohrid">Full-day · UNESCO</span>
+                </a>
+                <a class="quick-route" href="https://wa.me/38978877955?text=Hello%2C%20Skopje%20city%20tour." target="_blank" rel="noopener">
+                  <strong data-i18n="travel.q.city.t">Skopje highlights</strong>
+                  <span data-i18n="travel.q.city.s">3–4h · old town</span>
+                </a>
+              </div>
+
+              <div class="driver-card">
+                <div class="driver-top">
+                  <div class="avatar">M</div>
+                  <div>
+                    <h3 data-i18n="travel.driver.title">Your driver-guide</h3>
+                    <p data-i18n="travel.driver.sub">Stories, photos, food — not just a transfer</p>
+                  </div>
+                </div>
+                <div class="status-line">
+                  <span class="badge">✓ <span data-i18n="badge.local">Local guide</span></span>
+                  <span class="badge">✓ <span data-i18n="badge.flex">Flexible stops</span></span>
+                  <span class="badge">✓ <span data-i18n="badge.photo">Photo spots</span></span>
+                </div>
+                <a class="btn btn-whatsapp btn-full" href="https://wa.me/38978877955?text=Hello%2C%20I%27m%20interested%20in%20a%20Macedonia%20tour." target="_blank" rel="noopener" data-i18n="travel.driver.cta">Plan a tour on WhatsApp</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <div class="kicker" data-i18n="travel.expKicker">Travel experience</div>
+              <h2 data-i18n="travel.expTitle">Tours designed by a local, for travellers.</h2>
+            </div>
+            <p data-i18n="travel.expDesc">Every itinerary is private and shaped around what you want to see, eat and photograph. We share the spots locals actually love.</p>
+          </div>
+
+          <div class="gallery">
+            <figure class="photo big">
+              <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=70" alt="Matka Canyon" loading="lazy" onerror="this.style.display='none'">
+              <figcaption class="caption">
+                <strong>Matka Canyon</strong>
+                <span data-i18n="gallery.matka">Boat ride to Vrelo Cave</span>
+              </figcaption>
+            </figure>
+            <figure class="photo tall">
+              <img src="https://images.unsplash.com/photo-1591886960571-74d43a9d4166?auto=format&fit=crop&w=1000&q=70" alt="Ohrid Lake" loading="lazy" onerror="this.style.display='none'">
+              <figcaption class="caption">
+                <strong>Ohrid Lake</strong>
+                <span data-i18n="gallery.ohrid">UNESCO heritage day trip</span>
+              </figcaption>
+            </figure>
+            <figure class="photo wide">
+              <img src="https://images.unsplash.com/photo-1601000938259-9e92002320b2?auto=format&fit=crop&w=1200&q=70" alt="Skopje Old Bazaar" loading="lazy" onerror="this.style.display='none'">
+              <figcaption class="caption">
+                <strong data-i18n="gallery.skopje.t">Skopje Old Bazaar</strong>
+                <span data-i18n="gallery.skopje.s">Ottoman-era streets &amp; cafés</span>
+              </figcaption>
+            </figure>
+            <figure class="photo small">
+              <img src="https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=900&q=70" alt="Mountains" loading="lazy" onerror="this.style.display='none'">
+              <figcaption class="caption">
+                <strong>Mavrovo</strong>
+                <span data-i18n="gallery.mavrovo">Mountains &amp; lakes</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="service-grid">
+            <article class="service-card">
+              <div class="service-icon">🏞️</div>
+              <h3 data-i18n="travel.s1.t">Half-day private tours</h3>
+              <p data-i18n="travel.s1.p">Perfect for travellers with limited time — covering a single highlight at a relaxed pace, with photo stops and local tips.</p>
+              <ul class="feature-list">
+                <li data-i18n="travel.s1.l1">Matka Canyon — boats, caves, riverside lunch</li>
+                <li data-i18n="travel.s1.l2">Skopje highlights — old town, fortress, museums</li>
+                <li data-i18n="travel.s1.l3">Vodno &amp; Millennium Cross viewpoint</li>
+              </ul>
+              <a class="btn btn-primary" href="https://wa.me/38978877955?text=Hello%2C%20half-day%20tour." target="_blank" rel="noopener" data-i18n="travel.s1.cta">Book half-day</a>
+            </article>
+
+            <article class="service-card">
+              <div class="service-icon">🗺️</div>
+              <h3 data-i18n="travel.s2.t">Full-day &amp; multi-day trips</h3>
+              <p data-i18n="travel.s2.p">Travel deeper into North Macedonia, the Balkans and beyond — Ohrid, Bitola, Mavrovo, Kosovo border, even Albania &amp; Greece transfers.</p>
+              <ul class="feature-list">
+                <li data-i18n="travel.s2.l1">Ohrid &amp; St. Naum — full-day cultural route</li>
+                <li data-i18n="travel.s2.l2">Mavrovo, Galičica or Pelister national parks</li>
+                <li data-i18n="travel.s2.l3">Cross-border transfers to Tirana, Pristina, Sofia</li>
+              </ul>
+              <a class="btn btn-primary" href="https://wa.me/38978877955?text=Hello%2C%20full-day%20tour." target="_blank" rel="noopener" data-i18n="travel.s2.cta">Plan a full-day</a>
+            </article>
+          </div>
+
+          <div class="experience-band">
+            <div class="exp-card">
+              <div class="exp-num">500+</div>
+              <strong data-i18n="travel.exp1.t">Tours delivered</strong>
+              <span data-i18n="travel.exp1.s">Skopje &amp; nationwide</span>
+            </div>
+            <div class="exp-card">
+              <div class="exp-num">A→B</div>
+              <strong data-i18n="travel.exp2.t">Door-to-door</strong>
+              <span data-i18n="travel.exp2.s">Pickup at your hotel</span>
+            </div>
+            <div class="exp-card">
+              <div class="exp-num">📷</div>
+              <strong data-i18n="travel.exp3.t">Photo stops</strong>
+              <span data-i18n="travel.exp3.s">Best viewpoints included</span>
+            </div>
+            <div class="exp-card">
+              <div class="exp-num">🍽️</div>
+              <strong data-i18n="travel.exp4.t">Food tips</strong>
+              <span data-i18n="travel.exp4.s">Local recommendations</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="travel-destinations">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <div class="kicker" data-i18n="dest.kicker">Tour destinations</div>
+              <h2 data-i18n="dest.title">Popular places to visit.</h2>
+            </div>
+            <p data-i18n="dest.desc">Pick a destination — or combine several into a custom day. Every route is private and adjustable on the day.</p>
+          </div>
+          <div class="destinations">
+            <article class="destination">
+              <div class="dest-img"><img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="dest-body">
+                <div class="num">01</div>
+                <h3 data-i18n="dest.1.t">Matka Canyon</h3>
+                <p data-i18n="dest.1.p">Half-day favourite from Skopje — turquoise river, kayaks, boats and the famous Vrelo Cave.</p>
+                <span class="dest-tag" data-i18n="dest.tag.nature">Nature</span>
+              </div>
+            </article>
+            <article class="destination">
+              <div class="dest-img"><img src="https://images.unsplash.com/photo-1591886960571-74d43a9d4166?auto=format&fit=crop&w=800&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="dest-body">
+                <div class="num">02</div>
+                <h3 data-i18n="dest.2.t">Ohrid Lake</h3>
+                <p data-i18n="dest.2.p">UNESCO World Heritage city — old town, churches, lake views and excellent local cuisine.</p>
+                <span class="dest-tag" data-i18n="dest.tag.day">Day trip</span>
+              </div>
+            </article>
+            <article class="destination">
+              <div class="dest-img"><img src="https://images.unsplash.com/photo-1601000938259-9e92002320b2?auto=format&fit=crop&w=800&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="dest-body">
+                <div class="num">03</div>
+                <h3 data-i18n="dest.3.t">Old Bazaar &amp; Stone Bridge</h3>
+                <p data-i18n="dest.3.p">The cultural heart of Skopje — Ottoman streets, mosques, museums and lively cafés.</p>
+                <span class="dest-tag" data-i18n="dest.tag.skopje">Skopje</span>
+              </div>
+            </article>
+            <article class="destination">
+              <div class="dest-img"><img src="https://images.unsplash.com/photo-1499678329028-101435549a4e?auto=format&fit=crop&w=800&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="dest-body">
+                <div class="num">04</div>
+                <h3 data-i18n="dest.4.t">Vodno &amp; Millennium Cross</h3>
+                <p data-i18n="dest.4.p">Mountain escape minutes from Skopje — wide city views, fresh air and a relaxed route.</p>
+                <span class="dest-tag" data-i18n="dest.tag.view">Viewpoint</span>
+              </div>
+            </article>
+            <article class="destination">
+              <div class="dest-img"><img src="https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=800&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="dest-body">
+                <div class="num">05</div>
+                <h3 data-i18n="dest.5.t">Mavrovo National Park</h3>
+                <p data-i18n="dest.5.p">Mountain scenery, alpine lake and peaceful villages for travellers who love nature and quiet.</p>
+                <span class="dest-tag" data-i18n="dest.tag.mountain">Mountain</span>
+              </div>
+            </article>
+            <article class="destination">
+              <div class="dest-img"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=70" alt="" loading="lazy" onerror="this.style.display='none'"></div>
+              <div class="dest-body">
+                <div class="num">06</div>
+                <h3 data-i18n="dest.6.t">Bitola &amp; Heraclea</h3>
+                <p data-i18n="dest.6.p">Elegant 19th-century streets and ancient Roman ruins — a culture-focused full-day route.</p>
+                <span class="dest-tag" data-i18n="dest.tag.history">History</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    <!-- ============== END TRAVEL VIEW ============== -->
+
+    <!-- =================================================
+                       SHARED — BOOKING
+         ================================================= -->
+    <section id="booking">
+      <div class="container booking">
+        <div class="booking-copy">
+          <div class="kicker" data-i18n="book.kicker">Fast booking</div>
+          <h2 data-i18n="book.title">Send your trip details — get a reply in minutes.</h2>
+          <p data-i18n="book.desc">Fill the short form and press the WhatsApp button. It opens a ready-made message in your language with your selected service and notes.</p>
+          <div class="contact-stack">
+            <div class="contact-row">
+              <div><span data-i18n="book.phone">Phone</span><strong>+389 78 877 955</strong></div>
+              <a class="btn btn-ghost" href="tel:+38978877955" data-i18n="book.call">Call</a>
+            </div>
+            <div class="contact-row">
+              <div><span>WhatsApp</span><strong data-i18n="book.wa">Direct booking chat</strong></div>
+              <a class="btn btn-whatsapp" href="https://wa.me/38978877955" target="_blank" rel="noopener" data-i18n="book.open">Open chat</a>
+            </div>
+          </div>
+        </div>
+
+        <form class="booking-form" id="bookingForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="service" data-i18n="form.service">Service</label>
+              <select id="service" name="service">
+                <option data-i18n="form.opt.taxi">Taxi ride</option>
+                <option data-i18n="form.opt.airport">Airport transfer</option>
+                <option data-i18n="form.opt.city">Skopje city tour</option>
+                <option data-i18n="form.opt.matka">Matka Canyon tour</option>
+                <option data-i18n="form.opt.ohrid">Ohrid day trip</option>
+                <option data-i18n="form.opt.custom">Custom tour</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="date" data-i18n="form.date">Date</label>
+              <input id="date" name="date" type="date" />
+            </div>
+            <div class="field">
+              <label for="pickup" data-i18n="form.pickup">Pickup</label>
+              <input id="pickup" name="pickup" type="text" data-i18n-attr="placeholder" data-i18n="form.pickup.ph" placeholder="Hotel, airport, address..." />
+            </div>
+            <div class="field">
+              <label for="people" data-i18n="form.people">People</label>
+              <select id="people" name="people">
+                <option data-i18n="form.p.1">1 person</option>
+                <option data-i18n="form.p.2">2 people</option>
+                <option data-i18n="form.p.3">3 people</option>
+                <option data-i18n="form.p.4">4 people</option>
+                <option data-i18n="form.p.5">5+ people</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="message" data-i18n="form.notes">Notes</label>
+              <textarea id="message" name="message" data-i18n-attr="placeholder" data-i18n="form.notes.ph" placeholder="Destination, flight number, preferred time..."></textarea>
+            </div>
+          </div>
+          <p class="form-note" data-i18n="form.note">No payment is taken on this site — the form just opens a WhatsApp message.</p>
+          <button class="btn btn-whatsapp btn-full" type="submit" data-i18n="form.submit">Send booking on WhatsApp</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- =================================================
+                       SHARED — REVIEWS
+         ================================================= -->
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker" data-i18n="rev.kicker">Why guests choose us</div>
+            <h2 data-i18n="rev.title">Designed for travellers and locals.</h2>
+          </div>
+        </div>
+        <div class="reviews">
+          <article class="review">
+            <div class="stars">★★★★★</div>
+            <p data-i18n="rev.1.p">Private rides instead of crowded groups — perfect when you want to set your own pace and stop where you like.</p>
+            <strong data-i18n="rev.1.t">Private style</strong>
+            <span data-i18n="rev.1.s">Flexible schedule</span>
+          </article>
+          <article class="review">
+            <div class="stars">★★★★★</div>
+            <p data-i18n="rev.2.p">Airport pickup and city transfers booked in seconds on WhatsApp — clear quote, no surprises on arrival.</p>
+            <strong data-i18n="rev.2.t">Fast communication</strong>
+            <span data-i18n="rev.2.s">Direct WhatsApp</span>
+          </article>
+          <article class="review">
+            <div class="stars">★★★★★</div>
+            <p data-i18n="rev.3.p">Friendly local driver who actually knows the country — recommended places to eat were a real highlight.</p>
+            <strong data-i18n="rev.3.t">Real local insight</strong>
+            <span data-i18n="rev.3.s">Beyond just transport</span>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong style="color:#fff; font-family:'Manrope',sans-serif;">Skopje Taxi & Tours</strong><br />
+        <span data-i18n="footer.tag">Private taxi and tour services in Skopje, North Macedonia.</span>
+      </div>
+      <div class="footer-links">
+        <a href="#home" data-i18n="footer.home">Home</a>
+        <a href="#booking" data-i18n="footer.book">Booking</a>
+        <a href="tel:+38978877955" data-i18n="footer.call">Call</a>
+        <a href="https://wa.me/38978877955" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-cta" aria-label="Mobile quick actions">
+    <a class="btn" href="tel:+38978877955">📞 <span data-i18n="footer.call">Call</span></a>
+    <a class="btn btn-whatsapp" href="https://wa.me/38978877955" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <script>
+    /* ===========================================================
+       I18N — 4 LANGUAGES
+       =========================================================== */
+    const T = {
+      en: {
+        "brand.sub": "North Macedonia",
+        "nav.cta": "WhatsApp",
+        "mode.taxi": "Taxi",
+        "mode.travel": "Travel",
+
+        "taxi.eyebrow": "Private taxi • Airport transfer • 24/7",
+        "taxi.h1.a": "Comfortable rides across",
+        "taxi.h1.b": "Skopje & beyond.",
+        "taxi.lead": "Door-to-door private taxi service with a professional, English-speaking driver. Clean modern vehicle, transparent pricing, and instant WhatsApp booking — anytime, day or night.",
+        "taxi.cta.book": "Book on WhatsApp",
+        "trust.taxi.1.t": "24/7", "trust.taxi.1.s": "Airport & city rides",
+        "trust.taxi.2.t": "10+ yrs", "trust.taxi.2.s": "Driving experience",
+        "trust.taxi.3.t": "Fixed", "trust.taxi.3.s": "Transparent rates",
+
+        "panel.kicker": "Route preview",
+        "panel.online": "Online",
+        "panel.skopje": "Skopje Center",
+        "panel.matka": "Matka Canyon",
+        "panel.ohrid": "Ohrid Trip",
+        "panel.airport": "Airport",
+        "panel.cityRides": "City rides",
+        "panel.airportTr": "Airport",
+        "panel.custom": "Custom",
+        "panel.dayTours": "Day tours",
+
+        "quick.airport.t": "Airport transfer", "quick.airport.s": "Pickup / drop-off",
+        "quick.hour.t": "Hourly driver", "quick.hour.s": "Stay with you",
+        "quick.inter.t": "Intercity", "quick.inter.s": "Long distance",
+
+        "driver.title": "Your private driver in Skopje",
+        "driver.sub": "Taxi rides, airport transfers and tours",
+        "badge.whatsapp": "WhatsApp booking",
+        "badge.english": "English-speaking",
+        "badge.pickup": "Custom pickup",
+        "driver.cta": "Start a WhatsApp chat",
+
+        "taxi.servKicker": "Taxi service",
+        "taxi.servTitle": "Reliable, comfortable, on time.",
+        "taxi.servDesc": "Private rides for airport transfers, hotel pickup, business travel and safe night-time transportation in Skopje.",
+        "taxi.s1.t": "Skopje city taxi",
+        "taxi.s1.p": "Direct private rides anywhere in Skopje — pickup from your hotel, apartment, restaurant, bus station or any custom address.",
+        "taxi.s1.l1": "Hotel, city centre and bus-station pickup",
+        "taxi.s1.l2": "Short rides or hourly private-driver option",
+        "taxi.s1.l3": "Simple WhatsApp booking with live location",
+        "taxi.s1.cta": "Book taxi",
+        "taxi.s2.t": "Airport transfer",
+        "taxi.s2.p": "Stress-free transfers between Skopje International Airport and your hotel or destination. Just share your flight time and we handle the rest.",
+        "taxi.s2.l1": "Arrival meet & greet with your name",
+        "taxi.s2.l2": "Live flight tracking — no waiting fees on delays",
+        "taxi.s2.l3": "Private vehicle for your group and luggage",
+        "taxi.s2.cta": "Book transfer",
+
+        "exp.years.t": "Years on the road", "exp.years.s": "Local Skopje experience",
+        "exp.rating.t": "Guest rating", "exp.rating.s": "Punctual & friendly",
+        "exp.lang.t": "Languages", "exp.lang.s": "EN · MK · SQ · TR",
+        "exp.fees.t": "Hidden fees", "exp.fees.s": "Quoted before pickup",
+
+        "travel.eyebrow": "Curated tours • Private guide • Flexible routes",
+        "travel.h1.a": "Discover Macedonia with a",
+        "travel.h1.b": "local who knows it.",
+        "travel.lead": "From the turquoise water of Matka Canyon to the cobbled streets of Ohrid — travel at your own pace with a private driver-guide who speaks your language and knows the country by heart.",
+        "travel.cta.plan": "Plan my tour",
+        "travel.cta.see": "See destinations",
+        "trust.travel.1.t": "Private", "trust.travel.1.s": "No crowded groups",
+        "trust.travel.2.t": "Flexible", "trust.travel.2.s": "Custom itinerary",
+        "trust.travel.3.t": "Local", "trust.travel.3.s": "Insider tips & food",
+
+        "travel.panel.kicker": "Featured tour",
+        "travel.panel.title": "Matka • Skopje • Ohrid",
+        "travel.stat.matka": "Matka half-day",
+        "travel.stat.ohrid": "Ohrid full",
+        "travel.stat.multi": "Multi-day",
+        "travel.q.matka": "Half-day · boats & caves",
+        "travel.q.ohrid": "Full-day · UNESCO",
+        "travel.q.city.t": "Skopje highlights",
+        "travel.q.city.s": "3–4h · old town",
+
+        "travel.driver.title": "Your driver-guide",
+        "travel.driver.sub": "Stories, photos, food — not just a transfer",
+        "badge.local": "Local guide",
+        "badge.flex": "Flexible stops",
+        "badge.photo": "Photo spots",
+        "travel.driver.cta": "Plan a tour on WhatsApp",
+
+        "travel.expKicker": "Travel experience",
+        "travel.expTitle": "Tours designed by a local, for travellers.",
+        "travel.expDesc": "Every itinerary is private and shaped around what you want to see, eat and photograph. We share the spots locals actually love.",
+        "gallery.matka": "Boat ride to Vrelo Cave",
+        "gallery.ohrid": "UNESCO heritage day trip",
+        "gallery.skopje.t": "Skopje Old Bazaar",
+        "gallery.skopje.s": "Ottoman-era streets & cafés",
+        "gallery.mavrovo": "Mountains & lakes",
+
+        "travel.s1.t": "Half-day private tours",
+        "travel.s1.p": "Perfect for travellers with limited time — covering a single highlight at a relaxed pace, with photo stops and local tips.",
+        "travel.s1.l1": "Matka Canyon — boats, caves, riverside lunch",
+        "travel.s1.l2": "Skopje highlights — old town, fortress, museums",
+        "travel.s1.l3": "Vodno & Millennium Cross viewpoint",
+        "travel.s1.cta": "Book half-day",
+        "travel.s2.t": "Full-day & multi-day trips",
+        "travel.s2.p": "Travel deeper into North Macedonia, the Balkans and beyond — Ohrid, Bitola, Mavrovo, Kosovo border, even Albania & Greece transfers.",
+        "travel.s2.l1": "Ohrid & St. Naum — full-day cultural route",
+        "travel.s2.l2": "Mavrovo, Galičica or Pelister national parks",
+        "travel.s2.l3": "Cross-border transfers to Tirana, Pristina, Sofia",
+        "travel.s2.cta": "Plan a full-day",
+
+        "travel.exp1.t": "Tours delivered", "travel.exp1.s": "Skopje & nationwide",
+        "travel.exp2.t": "Door-to-door", "travel.exp2.s": "Pickup at your hotel",
+        "travel.exp3.t": "Photo stops", "travel.exp3.s": "Best viewpoints included",
+        "travel.exp4.t": "Food tips", "travel.exp4.s": "Local recommendations",
+
+        "dest.kicker": "Tour destinations",
+        "dest.title": "Popular places to visit.",
+        "dest.desc": "Pick a destination — or combine several into a custom day. Every route is private and adjustable on the day.",
+        "dest.1.t": "Matka Canyon", "dest.1.p": "Half-day favourite from Skopje — turquoise river, kayaks, boats and the famous Vrelo Cave.",
+        "dest.2.t": "Ohrid Lake", "dest.2.p": "UNESCO World Heritage city — old town, churches, lake views and excellent local cuisine.",
+        "dest.3.t": "Old Bazaar & Stone Bridge", "dest.3.p": "The cultural heart of Skopje — Ottoman streets, mosques, museums and lively cafés.",
+        "dest.4.t": "Vodno & Millennium Cross", "dest.4.p": "Mountain escape minutes from Skopje — wide city views, fresh air and a relaxed route.",
+        "dest.5.t": "Mavrovo National Park", "dest.5.p": "Mountain scenery, alpine lake and peaceful villages for travellers who love nature and quiet.",
+        "dest.6.t": "Bitola & Heraclea", "dest.6.p": "Elegant 19th-century streets and ancient Roman ruins — a culture-focused full-day route.",
+        "dest.tag.nature": "Nature",
+        "dest.tag.day": "Day trip",
+        "dest.tag.skopje": "Skopje",
+        "dest.tag.view": "Viewpoint",
+        "dest.tag.mountain": "Mountain",
+        "dest.tag.history": "History",
+
+        "book.kicker": "Fast booking",
+        "book.title": "Send your trip details — get a reply in minutes.",
+        "book.desc": "Fill the short form and press the WhatsApp button. It opens a ready-made message in your language with your selected service and notes.",
+        "book.phone": "Phone",
+        "book.call": "Call",
+        "book.wa": "Direct booking chat",
+        "book.open": "Open chat",
+        "form.service": "Service",
+        "form.opt.taxi": "Taxi ride",
+        "form.opt.airport": "Airport transfer",
+        "form.opt.city": "Skopje city tour",
+        "form.opt.matka": "Matka Canyon tour",
+        "form.opt.ohrid": "Ohrid day trip",
+        "form.opt.custom": "Custom tour",
+        "form.date": "Date",
+        "form.pickup": "Pickup",
+        "form.pickup.ph": "Hotel, airport, address...",
+        "form.people": "People",
+        "form.p.1": "1 person", "form.p.2": "2 people", "form.p.3": "3 people", "form.p.4": "4 people", "form.p.5": "5+ people",
+        "form.notes": "Notes",
+        "form.notes.ph": "Destination, flight number, preferred time...",
+        "form.note": "No payment is taken on this site — the form just opens a WhatsApp message.",
+        "form.submit": "Send booking on WhatsApp",
+
+        "rev.kicker": "Why guests choose us",
+        "rev.title": "Designed for travellers and locals.",
+        "rev.1.p": "Private rides instead of crowded groups — perfect when you want to set your own pace and stop where you like.",
+        "rev.1.t": "Private style", "rev.1.s": "Flexible schedule",
+        "rev.2.p": "Airport pickup and city transfers booked in seconds on WhatsApp — clear quote, no surprises on arrival.",
+        "rev.2.t": "Fast communication", "rev.2.s": "Direct WhatsApp",
+        "rev.3.p": "Friendly local driver who actually knows the country — recommended places to eat were a real highlight.",
+        "rev.3.t": "Real local insight", "rev.3.s": "Beyond just transport",
+
+        "footer.tag": "Private taxi and tour services in Skopje, North Macedonia.",
+        "footer.home": "Home", "footer.book": "Booking", "footer.call": "Call"
+      },
+
+      mk: {
+        "brand.sub": "Северна Македонија",
+        "nav.cta": "WhatsApp",
+        "mode.taxi": "Такси",
+        "mode.travel": "Тури",
+
+        "taxi.eyebrow": "Приватно такси • Аеродром • 24/7",
+        "taxi.h1.a": "Удобни возења низ",
+        "taxi.h1.b": "Скопје и пошироко.",
+        "taxi.lead": "Приватно такси од врата до врата со професионален возач кој зборува англиски. Чисто модерно возило, фиксна цена и брзо резервирање преку WhatsApp — во секое време.",
+        "taxi.cta.book": "Резервирај на WhatsApp",
+        "trust.taxi.1.t": "24/7", "trust.taxi.1.s": "Аеродром и град",
+        "trust.taxi.2.t": "10+ год.", "trust.taxi.2.s": "Возачко искуство",
+        "trust.taxi.3.t": "Фиксно", "trust.taxi.3.s": "Транспарентни цени",
+
+        "panel.kicker": "Преглед на рута",
+        "panel.online": "Онлајн",
+        "panel.skopje": "Центар Скопје",
+        "panel.matka": "Кањон Матка",
+        "panel.ohrid": "Охрид",
+        "panel.airport": "Аеродром",
+        "panel.cityRides": "Градски",
+        "panel.airportTr": "Аеродром",
+        "panel.custom": "По мерка",
+        "panel.dayTours": "Дневни тури",
+
+        "quick.airport.t": "Трансфер аеродром", "quick.airport.s": "Подигање / враќање",
+        "quick.hour.t": "Возач по час", "quick.hour.s": "Останува со вас",
+        "quick.inter.t": "Меѓуградски", "quick.inter.s": "На долги релации",
+
+        "driver.title": "Вашиот приватен возач во Скопје",
+        "driver.sub": "Такси, аеродромски трансфери и тури",
+        "badge.whatsapp": "Резервација преку WhatsApp",
+        "badge.english": "Англиски јазик",
+        "badge.pickup": "Подигање по желба",
+        "driver.cta": "Започни WhatsApp разговор",
+
+        "taxi.servKicker": "Такси услуга",
+        "taxi.servTitle": "Сигурно, удобно, навреме.",
+        "taxi.servDesc": "Приватни возења за аеродром, хотел, бизнис патувања и сигурен ноќен превоз во Скопје.",
+        "taxi.s1.t": "Градско такси Скопје",
+        "taxi.s1.p": "Директни приватни возења низ Скопје — подигање од хотел, стан, ресторан, автобуска или адреса по избор.",
+        "taxi.s1.l1": "Подигање од хотел, центар и автобуска",
+        "taxi.s1.l2": "Краток превоз или возач по час",
+        "taxi.s1.l3": "Едноставна резервација со жива локација",
+        "taxi.s1.cta": "Резервирај такси",
+        "taxi.s2.t": "Аеродромски трансфер",
+        "taxi.s2.p": "Без стрес трансфер до и од Меѓународниот аеродром Скопје. Споделете го времето на летот и ние ќе се погрижиме за останатото.",
+        "taxi.s2.l1": "Пречек со ваше име на аеродром",
+        "taxi.s2.l2": "Следење на летови — без додаток за доцнење",
+        "taxi.s2.l3": "Приватно возило за вашата група и багаж",
+        "taxi.s2.cta": "Резервирај трансфер",
+
+        "exp.years.t": "Години возење", "exp.years.s": "Локално искуство",
+        "exp.rating.t": "Оцена на гости", "exp.rating.s": "Точно и пријателски",
+        "exp.lang.t": "Јазици", "exp.lang.s": "MK · SQ · EN · TR",
+        "exp.fees.t": "Скриени цени", "exp.fees.s": "Цена пред подигање",
+
+        "travel.eyebrow": "Курирани тури • Приватен водич • Флексибилна рута",
+        "travel.h1.a": "Откриј ја Македонија со",
+        "travel.h1.b": "локалец што ја знае.",
+        "travel.lead": "Од тиркизната вода на Матка до калдрмата на Охрид — патувајте со ваше темпо со приватен возач-водич кој го зборува вашиот јазик и ја знае земјата.",
+        "travel.cta.plan": "Испланирај тура",
+        "travel.cta.see": "Види дестинации",
+        "trust.travel.1.t": "Приватно", "trust.travel.1.s": "Без големи групи",
+        "trust.travel.2.t": "Флексибилно", "trust.travel.2.s": "По мерка програма",
+        "trust.travel.3.t": "Локално", "trust.travel.3.s": "Совети и храна",
+
+        "travel.panel.kicker": "Истакната тура",
+        "travel.panel.title": "Матка • Скопје • Охрид",
+        "travel.stat.matka": "Матка пол ден",
+        "travel.stat.ohrid": "Охрид цел ден",
+        "travel.stat.multi": "Повеќедневно",
+        "travel.q.matka": "Пол ден · чамци",
+        "travel.q.ohrid": "Цел ден · УНЕСКО",
+        "travel.q.city.t": "Скопје топ места",
+        "travel.q.city.s": "3–4ч · стар град",
+
+        "travel.driver.title": "Вашиот возач-водич",
+        "travel.driver.sub": "Приказни, фотки, храна — не само превоз",
+        "badge.local": "Локален водич",
+        "badge.flex": "Флексибилни застанувања",
+        "badge.photo": "Фото места",
+        "travel.driver.cta": "Испланирај тура на WhatsApp",
+
+        "travel.expKicker": "Туристичко искуство",
+        "travel.expTitle": "Тури осмислени од локалец, за патниците.",
+        "travel.expDesc": "Секоја програма е приватна и направена според тоа што сакате да видите, јадете и фотографирате. Ги делиме омилените локални места.",
+        "gallery.matka": "Чамец до Врело пештера",
+        "gallery.ohrid": "УНЕСКО еднодневна тура",
+        "gallery.skopje.t": "Стара чаршија Скопје",
+        "gallery.skopje.s": "Османлиски улици и кафулиња",
+        "gallery.mavrovo": "Планини и езера",
+
+        "travel.s1.t": "Приватни тури за пол ден",
+        "travel.s1.p": "Идеални за патници со ограничено време — една главна точка со фото места и локални совети.",
+        "travel.s1.l1": "Кањон Матка — чамци, пештери, ручек крај река",
+        "travel.s1.l2": "Скопје — стар град, тврдина, музеи",
+        "travel.s1.l3": "Водно и Милениумски крст",
+        "travel.s1.cta": "Резервирај",
+        "travel.s2.t": "Целодневни и повеќедневни тури",
+        "travel.s2.p": "Длабоко патување низ Македонија и регионот — Охрид, Битола, Маврово, гранични трансфери до Албанија и Грција.",
+        "travel.s2.l1": "Охрид и Свети Наум — целодневна културна рута",
+        "travel.s2.l2": "Маврово, Галичица или Пелистер",
+        "travel.s2.l3": "Гранични трансфери: Тирана, Приштина, Софија",
+        "travel.s2.cta": "Испланирај цел ден",
+
+        "travel.exp1.t": "Завршени тури", "travel.exp1.s": "Скопје и национално",
+        "travel.exp2.t": "Од врата до врата", "travel.exp2.s": "Подигање од хотел",
+        "travel.exp3.t": "Фото застанувања", "travel.exp3.s": "Најдобри видиковци",
+        "travel.exp4.t": "Совети за храна", "travel.exp4.s": "Локални препораки",
+
+        "dest.kicker": "Дестинации",
+        "dest.title": "Популарни места.",
+        "dest.desc": "Изберете дестинација — или комбинирајте повеќе во еден ден. Секоја рута е приватна и приспособлива.",
+        "dest.1.t": "Кањон Матка", "dest.1.p": "Омилен излет од Скопје — тиркизна река, кајаци, чамци и Врело пештера.",
+        "dest.2.t": "Охридско езеро", "dest.2.p": "УНЕСКО град — стар град, цркви, поглед на езерото и одлична храна.",
+        "dest.3.t": "Стара чаршија и Камен мост", "dest.3.p": "Културно срце на Скопје — османлиски улици, џамии, музеи и кафулиња.",
+        "dest.4.t": "Водно и Милениумски крст", "dest.4.p": "Планинско бегство неколку минути од Скопје — широки погледи и свеж воздух.",
+        "dest.5.t": "Национален парк Маврово", "dest.5.p": "Планини, алписко езеро и мирни села за љубителите на природата.",
+        "dest.6.t": "Битола и Хераклеа", "dest.6.p": "19-вековни улици и антички римски урнатини — целодневна културна рута.",
+        "dest.tag.nature": "Природа",
+        "dest.tag.day": "Еднодневна",
+        "dest.tag.skopje": "Скопје",
+        "dest.tag.view": "Видиковец",
+        "dest.tag.mountain": "Планина",
+        "dest.tag.history": "Историја",
+
+        "book.kicker": "Брзо резервирање",
+        "book.title": "Испратете ги деталите — одговор за неколку минути.",
+        "book.desc": "Пополнете ја формата и притиснете WhatsApp. Се отвора готова порака на вашиот јазик со избраната услуга и забелешки.",
+        "book.phone": "Телефон",
+        "book.call": "Јави се",
+        "book.wa": "Директен WhatsApp разговор",
+        "book.open": "Отвори",
+        "form.service": "Услуга",
+        "form.opt.taxi": "Такси возење",
+        "form.opt.airport": "Аеродромски трансфер",
+        "form.opt.city": "Тура низ Скопје",
+        "form.opt.matka": "Тура Матка",
+        "form.opt.ohrid": "Охрид цел ден",
+        "form.opt.custom": "Тура по мерка",
+        "form.date": "Датум",
+        "form.pickup": "Подигање",
+        "form.pickup.ph": "Хотел, аеродром, адреса...",
+        "form.people": "Лица",
+        "form.p.1": "1 лице", "form.p.2": "2 лица", "form.p.3": "3 лица", "form.p.4": "4 лица", "form.p.5": "5+ лица",
+        "form.notes": "Забелешки",
+        "form.notes.ph": "Дестинација, број на лет, време...",
+        "form.note": "Не се прима плаќање — формата само отвора WhatsApp порака.",
+        "form.submit": "Испрати на WhatsApp",
+
+        "rev.kicker": "Зошто гостите нѐ избираат",
+        "rev.title": "За патници и за локалци.",
+        "rev.1.p": "Приватни возења наместо толпа — кога сакате свое темпо и свои места за застанување.",
+        "rev.1.t": "Приватен стил", "rev.1.s": "Флексибилно",
+        "rev.2.p": "Аеродром и градски трансфери резервирани за секунди — јасна цена, без изненадувања.",
+        "rev.2.t": "Брза комуникација", "rev.2.s": "Директно на WhatsApp",
+        "rev.3.p": "Љубезен локален возач што ја познава земјата — препорачаните места за јадење беа главна точка.",
+        "rev.3.t": "Локално знаење", "rev.3.s": "Повеќе од превоз",
+
+        "footer.tag": "Приватно такси и тури во Скопје, Северна Македонија.",
+        "footer.home": "Почетна", "footer.book": "Резервација", "footer.call": "Јави се"
+      },
+
+      sq: {
+        "brand.sub": "Maqedonia e Veriut",
+        "nav.cta": "WhatsApp",
+        "mode.taxi": "Taksi",
+        "mode.travel": "Udhëtim",
+
+        "taxi.eyebrow": "Taksi privat • Transfer aeroporti • 24/7",
+        "taxi.h1.a": "Udhëtime të rehatshme në",
+        "taxi.h1.b": "Shkup dhe më gjerë.",
+        "taxi.lead": "Shërbim taksi privat derë-më-derë me një shofer profesional që flet anglisht. Automjet i pastër modern, çmim transparent dhe rezervim i menjëhershëm me WhatsApp — në çdo kohë.",
+        "taxi.cta.book": "Rezervo në WhatsApp",
+        "trust.taxi.1.t": "24/7", "trust.taxi.1.s": "Aeroport & qytet",
+        "trust.taxi.2.t": "10+ vjet", "trust.taxi.2.s": "Përvojë në vozitje",
+        "trust.taxi.3.t": "Fiks", "trust.taxi.3.s": "Çmime transparente",
+
+        "panel.kicker": "Pamje rrugë",
+        "panel.online": "Online",
+        "panel.skopje": "Qendër Shkup",
+        "panel.matka": "Kanioni Matka",
+        "panel.ohrid": "Ohër",
+        "panel.airport": "Aeroporti",
+        "panel.cityRides": "Në qytet",
+        "panel.airportTr": "Aeroport",
+        "panel.custom": "Personalizuar",
+        "panel.dayTours": "Tura ditore",
+
+        "quick.airport.t": "Transfer aeroporti", "quick.airport.s": "Marrje / lënie",
+        "quick.hour.t": "Shofer me orë", "quick.hour.s": "Qëndron me ju",
+        "quick.inter.t": "Ndërqytetës", "quick.inter.s": "Distancë e gjatë",
+
+        "driver.title": "Shoferi juaj privat në Shkup",
+        "driver.sub": "Taksi, transfere dhe tura",
+        "badge.whatsapp": "Rezervim në WhatsApp",
+        "badge.english": "Flet anglisht",
+        "badge.pickup": "Marrje sipas dëshirës",
+        "driver.cta": "Hap bisedën në WhatsApp",
+
+        "taxi.servKicker": "Shërbimi i taksisë",
+        "taxi.servTitle": "I besueshëm, i rehatshëm, në kohë.",
+        "taxi.servDesc": "Udhëtime private për transfere aeroporti, marrje nga hoteli, udhëtime biznesi dhe transport të sigurt natën në Shkup.",
+        "taxi.s1.t": "Taksi në qytetin e Shkupit",
+        "taxi.s1.p": "Udhëtime private direkte në Shkup — marrje nga hoteli, banesa, restoranti, stacioni i autobusëve ose çdo adresë.",
+        "taxi.s1.l1": "Marrje nga hoteli, qendra dhe stacioni",
+        "taxi.s1.l2": "Udhëtime të shkurtra ose shofer me orë",
+        "taxi.s1.l3": "Rezervim i thjeshtë me lokacion live",
+        "taxi.s1.cta": "Rezervo taksi",
+        "taxi.s2.t": "Transfer aeroporti",
+        "taxi.s2.p": "Transfer pa stres mes Aeroportit Ndërkombëtar të Shkupit dhe hotelit tuaj. Vetëm ndani kohën e fluturimit dhe ne kujdesemi për pjesën tjetër.",
+        "taxi.s2.l1": "Pritje me emrin tuaj në aeroport",
+        "taxi.s2.l2": "Ndjekje fluturimi — pa tarifa pritjeje",
+        "taxi.s2.l3": "Automjet privat për grupin dhe bagazhin",
+        "taxi.s2.cta": "Rezervo transfer",
+
+        "exp.years.t": "Vite në rrugë", "exp.years.s": "Përvojë lokale Shkup",
+        "exp.rating.t": "Vlerësim mysafirësh", "exp.rating.s": "Në kohë & miqësor",
+        "exp.lang.t": "Gjuhë", "exp.lang.s": "SQ · MK · EN · TR",
+        "exp.fees.t": "Tarifa të fshehura", "exp.fees.s": "Çmim para nisjes",
+
+        "travel.eyebrow": "Tura të zgjedhura • Udhërrëfyes privat • Rrugë fleksibël",
+        "travel.h1.a": "Zbulo Maqedoninë me",
+        "travel.h1.b": "një vendës që e njeh.",
+        "travel.lead": "Nga uji bruz i Kanionit Matka deri te rrugicat me kalldrëm të Ohrit — udhëtoni me ritmin tuaj me një shofer-udhërrëfyes që flet gjuhën tuaj.",
+        "travel.cta.plan": "Planifiko turën time",
+        "travel.cta.see": "Shih destinacionet",
+        "trust.travel.1.t": "Privat", "trust.travel.1.s": "Pa grupe të mëdha",
+        "trust.travel.2.t": "Fleksibël", "trust.travel.2.s": "Itinerar i personalizuar",
+        "trust.travel.3.t": "Lokal", "trust.travel.3.s": "Këshilla & ushqim",
+
+        "travel.panel.kicker": "Tura e veçuar",
+        "travel.panel.title": "Matka • Shkup • Ohër",
+        "travel.stat.matka": "Matka gjysmë dite",
+        "travel.stat.ohrid": "Ohër ditë",
+        "travel.stat.multi": "Shumë ditë",
+        "travel.q.matka": "Gjysmë dite · varka",
+        "travel.q.ohrid": "Ditë · UNESCO",
+        "travel.q.city.t": "Shkup pikat kryesore",
+        "travel.q.city.s": "3–4h · qendra",
+
+        "travel.driver.title": "Shoferi-udhërrëfyes juaj",
+        "travel.driver.sub": "Histori, foto, ushqim — jo vetëm transfer",
+        "badge.local": "Udhërrëfyes lokal",
+        "badge.flex": "Ndalesa fleksibël",
+        "badge.photo": "Pika fotografimi",
+        "travel.driver.cta": "Planifiko në WhatsApp",
+
+        "travel.expKicker": "Përvoja udhëtimit",
+        "travel.expTitle": "Tura të krijuara nga një vendës.",
+        "travel.expDesc": "Çdo itinerar është privat dhe i bërë sipas asaj që doni të shihni, hani dhe fotografoni. Ndajmë vendet që vendësit i pëlqejnë.",
+        "gallery.matka": "Varkë drejt shpellës Vrelo",
+        "gallery.ohrid": "Tura ditore UNESCO",
+        "gallery.skopje.t": "Pazari i Vjetër Shkup",
+        "gallery.skopje.s": "Rrugë osmane & kafene",
+        "gallery.mavrovo": "Male & liqene",
+
+        "travel.s1.t": "Tura private gjysmë dite",
+        "travel.s1.p": "Ideale për udhëtarët me kohë të kufizuar — një pikë kryesore me foto-ndalesa dhe këshilla lokale.",
+        "travel.s1.l1": "Kanioni Matka — varka, shpella, drekë",
+        "travel.s1.l2": "Shkup — qendra, kalaja, muze",
+        "travel.s1.l3": "Vodno & Kryqi i Mijëvjeçarit",
+        "travel.s1.cta": "Rezervo gjysmë dite",
+        "travel.s2.t": "Tura ditore & shumëditëshe",
+        "travel.s2.p": "Udhëto thellë në Maqedoninë e Veriut, Ballkan dhe më gjerë — Ohër, Manastir, Mavrovë, transfere kufitare.",
+        "travel.s2.l1": "Ohër & Shën Naum — itinerar kulturor",
+        "travel.s2.l2": "Mavrovë, Galiçicë ose Pelister",
+        "travel.s2.l3": "Transfer kufitar: Tiranë, Prishtinë, Sofje",
+        "travel.s2.cta": "Planifiko ditë të plotë",
+
+        "travel.exp1.t": "Tura të kryera", "travel.exp1.s": "Shkup & gjithë vendi",
+        "travel.exp2.t": "Derë-më-derë", "travel.exp2.s": "Marrje nga hoteli",
+        "travel.exp3.t": "Foto-ndalesa", "travel.exp3.s": "Pikat më të mira",
+        "travel.exp4.t": "Këshilla ushqimi", "travel.exp4.s": "Rekomandime lokale",
+
+        "dest.kicker": "Destinacione",
+        "dest.title": "Vende popullore për të vizituar.",
+        "dest.desc": "Zgjidh një destinacion ose kombino disa në një ditë. Çdo rrugë është private dhe e rregullueshme.",
+        "dest.1.t": "Kanioni Matka", "dest.1.p": "Tura preferuar gjysmë dite — lumi bruz, kajak, varka dhe shpella Vrelo.",
+        "dest.2.t": "Liqeni i Ohrit", "dest.2.p": "Trashëgimi botërore UNESCO — qytet i vjetër, kisha, pamje liqeni dhe ushqim shumë i mirë.",
+        "dest.3.t": "Pazari i Vjetër & Ura e Gurit", "dest.3.p": "Zemra kulturore e Shkupit — rrugë osmane, xhami, muze dhe kafene.",
+        "dest.4.t": "Vodno & Kryqi i Mijëvjeçarit", "dest.4.p": "Arratisje malore disa minuta nga Shkupi — pamje, ajër i pastër, rrugë e qetë.",
+        "dest.5.t": "Parku Kombëtar Mavrovë", "dest.5.p": "Male, liqen alpin dhe fshatra të qeta për dashamirët e natyrës.",
+        "dest.6.t": "Manastir & Heraklea", "dest.6.p": "Rrugë elegante të shek. 19 dhe rrënoja antike romake — itinerar kulturor.",
+        "dest.tag.nature": "Natyrë",
+        "dest.tag.day": "Tura ditore",
+        "dest.tag.skopje": "Shkup",
+        "dest.tag.view": "Pamje",
+        "dest.tag.mountain": "Mal",
+        "dest.tag.history": "Histori",
+
+        "book.kicker": "Rezervim i shpejtë",
+        "book.title": "Dërgo detajet — përgjigje brenda minutash.",
+        "book.desc": "Plotëso formën dhe shtyp WhatsApp. Hapet një mesazh i gatshëm në gjuhën tënde.",
+        "book.phone": "Telefon",
+        "book.call": "Telefono",
+        "book.wa": "Bisedë direkte WhatsApp",
+        "book.open": "Hap",
+        "form.service": "Shërbimi",
+        "form.opt.taxi": "Taksi",
+        "form.opt.airport": "Transfer aeroporti",
+        "form.opt.city": "Tura në Shkup",
+        "form.opt.matka": "Tura Matka",
+        "form.opt.ohrid": "Ohër ditë",
+        "form.opt.custom": "Tura e personalizuar",
+        "form.date": "Data",
+        "form.pickup": "Marrje",
+        "form.pickup.ph": "Hotel, aeroport, adresë...",
+        "form.people": "Persona",
+        "form.p.1": "1 person", "form.p.2": "2 persona", "form.p.3": "3 persona", "form.p.4": "4 persona", "form.p.5": "5+ persona",
+        "form.notes": "Shënime",
+        "form.notes.ph": "Destinacioni, numri i fluturimit, ora...",
+        "form.note": "Nuk merret pagesë në këtë faqe — forma vetëm hap WhatsApp.",
+        "form.submit": "Dërgo në WhatsApp",
+
+        "rev.kicker": "Pse të zgjedhin mysafirët",
+        "rev.title": "Për udhëtarët dhe vendësit.",
+        "rev.1.p": "Udhëtime private në vend të grupeve të mëdha — kur dëshiron të bësh ritmin tënd.",
+        "rev.1.t": "Stil privat", "rev.1.s": "Orari fleksibël",
+        "rev.2.p": "Aeroport dhe transfere në qytet të rezervuara në sekonda — çmim i qartë.",
+        "rev.2.t": "Komunikim i shpejtë", "rev.2.s": "WhatsApp direkt",
+        "rev.3.p": "Shofer lokal miqësor që e njeh vërtet vendin — vendet e ushqimit ishin pikë kulmore.",
+        "rev.3.t": "Njohuri lokale", "rev.3.s": "Më shumë se transport",
+
+        "footer.tag": "Shërbime taksi private dhe tura në Shkup, Maqedonia e Veriut.",
+        "footer.home": "Kreu", "footer.book": "Rezervim", "footer.call": "Telefono"
+      },
+
+      tr: {
+        "brand.sub": "Kuzey Makedonya",
+        "nav.cta": "WhatsApp",
+        "mode.taxi": "Taksi",
+        "mode.travel": "Gezi",
+
+        "taxi.eyebrow": "Özel taksi • Havalimanı transferi • 7/24",
+        "taxi.h1.a": "Konforlu yolculuklar:",
+        "taxi.h1.b": "Üsküp ve ötesi.",
+        "taxi.lead": "Profesyonel, İngilizce konuşan şoförle kapıdan kapıya özel taksi hizmeti. Temiz modern araç, şeffaf fiyat ve anında WhatsApp rezervasyonu — gece veya gündüz fark etmez.",
+        "taxi.cta.book": "WhatsApp'tan rezerve et",
+        "trust.taxi.1.t": "7/24", "trust.taxi.1.s": "Havalimanı & şehir",
+        "trust.taxi.2.t": "10+ yıl", "trust.taxi.2.s": "Sürücü deneyimi",
+        "trust.taxi.3.t": "Sabit", "trust.taxi.3.s": "Şeffaf fiyat",
+
+        "panel.kicker": "Rota önizleme",
+        "panel.online": "Çevrimiçi",
+        "panel.skopje": "Üsküp Merkez",
+        "panel.matka": "Matka Kanyonu",
+        "panel.ohrid": "Ohrid",
+        "panel.airport": "Havalimanı",
+        "panel.cityRides": "Şehir içi",
+        "panel.airportTr": "Havalimanı",
+        "panel.custom": "Özel",
+        "panel.dayTours": "Günlük tur",
+
+        "quick.airport.t": "Havalimanı transferi", "quick.airport.s": "Karşılama / bırakma",
+        "quick.hour.t": "Saatlik şoför", "quick.hour.s": "Sizinle kalır",
+        "quick.inter.t": "Şehirlerarası", "quick.inter.s": "Uzun mesafe",
+
+        "driver.title": "Üsküp'teki özel şoförünüz",
+        "driver.sub": "Taksi, havalimanı transferi ve turlar",
+        "badge.whatsapp": "WhatsApp ile rezervasyon",
+        "badge.english": "İngilizce konuşur",
+        "badge.pickup": "Özel karşılama",
+        "driver.cta": "WhatsApp sohbeti başlat",
+
+        "taxi.servKicker": "Taksi hizmeti",
+        "taxi.servTitle": "Güvenilir, konforlu, dakik.",
+        "taxi.servDesc": "Havalimanı transferi, otelden alış, iş seyahatleri ve gece güvenli ulaşım için özel yolculuklar.",
+        "taxi.s1.t": "Üsküp şehir taksisi",
+        "taxi.s1.p": "Üsküp'te her noktaya doğrudan özel yolculuk — otel, daire, restoran, otobüs terminali veya istediğiniz adresten alış.",
+        "taxi.s1.l1": "Otel, şehir merkezi ve terminal alış",
+        "taxi.s1.l2": "Kısa yolculuk veya saatlik şoför",
+        "taxi.s1.l3": "Canlı konum ile basit WhatsApp rezervasyonu",
+        "taxi.s1.cta": "Taksi rezerve et",
+        "taxi.s2.t": "Havalimanı transferi",
+        "taxi.s2.p": "Üsküp Uluslararası Havalimanı ile oteliniz arasında stressiz transfer. Uçuş saatinizi paylaşın, gerisini biz halledelim.",
+        "taxi.s2.l1": "Adınızla havalimanında karşılama",
+        "taxi.s2.l2": "Canlı uçuş takibi — gecikme ücreti yok",
+        "taxi.s2.l3": "Grubunuz ve bagajınız için özel araç",
+        "taxi.s2.cta": "Transfer rezerve et",
+
+        "exp.years.t": "Yol yılı", "exp.years.s": "Yerel Üsküp deneyimi",
+        "exp.rating.t": "Müşteri puanı", "exp.rating.s": "Dakik & dost canlısı",
+        "exp.lang.t": "Diller", "exp.lang.s": "TR · EN · MK · SQ",
+        "exp.fees.t": "Gizli ücret yok", "exp.fees.s": "Önceden net fiyat",
+
+        "travel.eyebrow": "Özenli turlar • Özel rehber • Esnek rota",
+        "travel.h1.a": "Makedonya'yı bir",
+        "travel.h1.b": "yerelle keşfedin.",
+        "travel.lead": "Matka Kanyonu'nun turkuaz suyundan Ohrid'in arnavut kaldırımlı sokaklarına — kendi temponuzda, sizin dilinizi konuşan özel bir şoför-rehberle gezin.",
+        "travel.cta.plan": "Turumu planla",
+        "travel.cta.see": "Destinasyonları gör",
+        "trust.travel.1.t": "Özel", "trust.travel.1.s": "Kalabalık grup yok",
+        "trust.travel.2.t": "Esnek", "trust.travel.2.s": "Size özel program",
+        "trust.travel.3.t": "Yerel", "trust.travel.3.s": "İçeriden ipuçları",
+
+        "travel.panel.kicker": "Öne çıkan tur",
+        "travel.panel.title": "Matka • Üsküp • Ohrid",
+        "travel.stat.matka": "Matka yarım gün",
+        "travel.stat.ohrid": "Ohrid tam gün",
+        "travel.stat.multi": "Çok günlü",
+        "travel.q.matka": "Yarım gün · tekne",
+        "travel.q.ohrid": "Tam gün · UNESCO",
+        "travel.q.city.t": "Üsküp turu",
+        "travel.q.city.s": "3–4s · eski şehir",
+
+        "travel.driver.title": "Şoför-rehberiniz",
+        "travel.driver.sub": "Hikaye, fotoğraf, yemek — sadece transfer değil",
+        "badge.local": "Yerel rehber",
+        "badge.flex": "Esnek duraklar",
+        "badge.photo": "Fotoğraf noktaları",
+        "travel.driver.cta": "WhatsApp'tan tur planla",
+
+        "travel.expKicker": "Gezi deneyimi",
+        "travel.expTitle": "Yerelden, gezgine: özenli turlar.",
+        "travel.expDesc": "Her program özeldir ve görmek, yemek, fotoğraflamak istediklerinize göre şekillenir. Yerellerin gerçekten sevdiği yerleri paylaşıyoruz.",
+        "gallery.matka": "Vrelo Mağarası tekne turu",
+        "gallery.ohrid": "UNESCO günübirlik tur",
+        "gallery.skopje.t": "Üsküp Eski Çarşı",
+        "gallery.skopje.s": "Osmanlı sokakları & kafeler",
+        "gallery.mavrovo": "Dağlar & göller",
+
+        "travel.s1.t": "Yarım günlük özel turlar",
+        "travel.s1.p": "Zamanı kısıtlı gezginler için ideal — fotoğraf duraklarıyla rahat tempolu, tek ana noktada özenli bir tur.",
+        "travel.s1.l1": "Matka Kanyonu — tekne, mağara, nehir kenarı yemek",
+        "travel.s1.l2": "Üsküp turu — eski şehir, kale, müzeler",
+        "travel.s1.l3": "Vodno & Milenyum Haçı manzarası",
+        "travel.s1.cta": "Yarım gün rezerve et",
+        "travel.s2.t": "Tam günlük & çok günlük geziler",
+        "travel.s2.p": "Kuzey Makedonya, Balkanlar ve ötesi — Ohrid, Manastır, Mavrovo, Kosova sınırı, hatta Arnavutluk & Yunanistan transferleri.",
+        "travel.s2.l1": "Ohrid & Sveti Naum — tam günlük kültür rotası",
+        "travel.s2.l2": "Mavrovo, Galiçica veya Pelister parkları",
+        "travel.s2.l3": "Sınır transferleri: Tiran, Priştine, Sofya",
+        "travel.s2.cta": "Tam gün planla",
+
+        "travel.exp1.t": "Tamamlanan tur", "travel.exp1.s": "Üsküp & ülke geneli",
+        "travel.exp2.t": "Kapıdan kapıya", "travel.exp2.s": "Otelden alış",
+        "travel.exp3.t": "Fotoğraf durakları", "travel.exp3.s": "En iyi manzara",
+        "travel.exp4.t": "Yemek önerisi", "travel.exp4.s": "Yerel tavsiyeler",
+
+        "dest.kicker": "Tur destinasyonları",
+        "dest.title": "Popüler ziyaret yerleri.",
+        "dest.desc": "Bir destinasyon seç ya da birkaçını birleştir. Her rota özeldir ve gün içinde değişebilir.",
+        "dest.1.t": "Matka Kanyonu", "dest.1.p": "Üsküp'ün favori yarım gün turu — turkuaz nehir, kano, tekne ve ünlü Vrelo Mağarası.",
+        "dest.2.t": "Ohrid Gölü", "dest.2.p": "UNESCO Dünya Mirası şehri — eski şehir, kiliseler, göl manzarası ve harika yerel mutfak.",
+        "dest.3.t": "Eski Çarşı & Taş Köprü", "dest.3.p": "Üsküp'ün kültür kalbi — Osmanlı sokakları, camiler, müzeler ve canlı kafeler.",
+        "dest.4.t": "Vodno & Milenyum Haçı", "dest.4.p": "Üsküp'ten dakikalar uzakta dağ kaçamağı — geniş şehir manzarası ve temiz hava.",
+        "dest.5.t": "Mavrovo Milli Parkı", "dest.5.p": "Dağ manzarası, alp gölü ve sakin köyler — doğa sevenler için.",
+        "dest.6.t": "Manastır (Bitola) & Heraklea", "dest.6.p": "19. yüzyıl şık sokakları ve antik Roma kalıntıları — kültür odaklı tam gün rotası.",
+        "dest.tag.nature": "Doğa",
+        "dest.tag.day": "Günübirlik",
+        "dest.tag.skopje": "Üsküp",
+        "dest.tag.view": "Manzara",
+        "dest.tag.mountain": "Dağ",
+        "dest.tag.history": "Tarih",
+
+        "book.kicker": "Hızlı rezervasyon",
+        "book.title": "Detayları gönder — dakikalar içinde dönüş.",
+        "book.desc": "Kısa formu doldurun ve WhatsApp düğmesine basın. Dilinizde hazır mesaj açılır.",
+        "book.phone": "Telefon",
+        "book.call": "Ara",
+        "book.wa": "Doğrudan WhatsApp",
+        "book.open": "Aç",
+        "form.service": "Hizmet",
+        "form.opt.taxi": "Taksi yolculuğu",
+        "form.opt.airport": "Havalimanı transferi",
+        "form.opt.city": "Üsküp şehir turu",
+        "form.opt.matka": "Matka Kanyonu turu",
+        "form.opt.ohrid": "Ohrid günübirlik",
+        "form.opt.custom": "Özel tur",
+        "form.date": "Tarih",
+        "form.pickup": "Alış",
+        "form.pickup.ph": "Otel, havalimanı, adres...",
+        "form.people": "Kişi",
+        "form.p.1": "1 kişi", "form.p.2": "2 kişi", "form.p.3": "3 kişi", "form.p.4": "4 kişi", "form.p.5": "5+ kişi",
+        "form.notes": "Notlar",
+        "form.notes.ph": "Hedef, uçuş numarası, saat...",
+        "form.note": "Sitede ödeme alınmaz — form sadece WhatsApp mesajı açar.",
+        "form.submit": "WhatsApp ile gönder",
+
+        "rev.kicker": "Bizi neden seçiyorlar",
+        "rev.title": "Gezginler ve yereller için.",
+        "rev.1.p": "Kalabalık grup yerine özel yolculuk — kendi temponuzu istediğinizde mükemmel.",
+        "rev.1.t": "Özel tarz", "rev.1.s": "Esnek program",
+        "rev.2.p": "Havalimanı ve şehir transferleri saniyeler içinde rezerve — net fiyat, sürpriz yok.",
+        "rev.2.t": "Hızlı iletişim", "rev.2.s": "Doğrudan WhatsApp",
+        "rev.3.p": "Ülkeyi gerçekten bilen sıcakkanlı yerel şoför — yemek tavsiyeleri turun yıldızıydı.",
+        "rev.3.t": "Yerel bakış açısı", "rev.3.s": "Sadece ulaşım değil",
+
+        "footer.tag": "Üsküp, Kuzey Makedonya'da özel taksi ve tur hizmetleri.",
+        "footer.home": "Ana sayfa", "footer.book": "Rezervasyon", "footer.call": "Ara"
+      }
+    };
+
+    const FLAGS = { en: "🇬🇧", mk: "🇲🇰", sq: "🇦🇱", tr: "🇹🇷" };
+    const LANGS = { en: "EN", mk: "MK", sq: "SQ", tr: "TR" };
+    const HTML_LANG = { en: "en", mk: "mk", sq: "sq", tr: "tr" };
+
+    function applyLang(lang) {
+      const dict = T[lang] || T.en;
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        const attr = el.getAttribute("data-i18n-attr");
+        const val = dict[key];
+        if (val == null) return;
+        if (attr) el.setAttribute(attr, val);
+        else el.textContent = val;
+      });
+      document.documentElement.lang = HTML_LANG[lang] || "en";
+      document.getElementById("langFlag").textContent = FLAGS[lang] || "🇬🇧";
+      document.getElementById("langLabel").textContent = LANGS[lang] || "EN";
+      document.querySelectorAll(".lang-menu button[data-lang]").forEach(b => {
+        b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+      });
+      try { localStorage.setItem("siteLang", lang); } catch (e) {}
+    }
+
+    function detectInitialLang() {
+      try {
+        const saved = localStorage.getItem("siteLang");
+        if (saved && T[saved]) return saved;
+      } catch (e) {}
+      const nav = (navigator.language || "en").slice(0, 2).toLowerCase();
+      if (T[nav]) return nav;
+      return "en";
+    }
+
+    /* ===========================================================
+       INITIALIZATION
+       =========================================================== */
+    document.addEventListener("DOMContentLoaded", () => {
+
+      // Language
+      applyLang(detectInitialLang());
+
+      const langWrap = document.getElementById("langSwitcher");
+      const langBtn = document.getElementById("langBtn");
+      langBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        langWrap.classList.toggle("open");
+        langBtn.setAttribute("aria-expanded", langWrap.classList.contains("open"));
+      });
+      document.addEventListener("click", (e) => {
+        if (!langWrap.contains(e.target)) {
+          langWrap.classList.remove("open");
+          langBtn.setAttribute("aria-expanded", "false");
+        }
+      });
+      document.querySelectorAll(".lang-menu button[data-lang]").forEach(b => {
+        b.addEventListener("click", () => {
+          applyLang(b.getAttribute("data-lang"));
+          langWrap.classList.remove("open");
+        });
+      });
+
+      // Mode toggle
+      const taxiBtn = document.getElementById("modeTaxi");
+      const travelBtn = document.getElementById("modeTravel");
+      function setMode(mode) {
+        document.body.setAttribute("data-mode", mode);
+        taxiBtn.classList.toggle("active", mode === "taxi");
+        travelBtn.classList.toggle("active", mode === "travel");
+        taxiBtn.setAttribute("aria-selected", mode === "taxi");
+        travelBtn.setAttribute("aria-selected", mode === "travel");
+        try { localStorage.setItem("siteMode", mode); } catch (e) {}
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      taxiBtn.addEventListener("click", () => setMode("taxi"));
+      travelBtn.addEventListener("click", () => setMode("travel"));
+      // Default = taxi (always start on taxi as requested)
+      setMode("taxi");
+
+      // Booking form
+      const PHONE = "38978877955";
+      const form = document.getElementById("bookingForm");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const service = document.getElementById("service").value;
+        const date = document.getElementById("date").value || "—";
+        const pickup = document.getElementById("pickup").value.trim() || "—";
+        const people = document.getElementById("people").value;
+        const notes = document.getElementById("message").value.trim() || "—";
+        const greet = {
+          en: "Hello, I would like to book a service.",
+          mk: "Здраво, сакам да резервирам услуга.",
+          sq: "Përshëndetje, dua të rezervoj një shërbim.",
+          tr: "Merhaba, bir rezervasyon yapmak istiyorum."
+        };
+        const cur = document.documentElement.lang || "en";
+        const text = `${greet[cur] || greet.en}%0A%0A` +
+          `Service: ${encodeURIComponent(service)}%0A` +
+          `Date: ${encodeURIComponent(date)}%0A` +
+          `Pickup: ${encodeURIComponent(pickup)}%0A` +
+          `People: ${encodeURIComponent(people)}%0A` +
+          `Notes: ${encodeURIComponent(notes)}`;
+        window.open(`https://wa.me/${PHONE}?text=${text}`, "_blank", "noopener");
+      });
+    });
+  </script>
+
+
+  <script>
+    /* AADS auto-refresh: reloads visible ad iframes every 30 seconds. */
+    (function () {
+      const REFRESH_MS = 30000;
+
+      document.querySelectorAll('[data-close-ad]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const target = document.getElementById(button.dataset.closeAd);
+          if (target) target.classList.add('is-hidden');
+        });
+      });
+
+      function refreshAadsFrames() {
+        document.querySelectorAll('.aads-sticky:not(.is-hidden) .aads-frame').forEach((frame) => {
+          const baseSrc = frame.dataset.baseSrc || frame.src.split('&refresh=')[0];
+          const separator = baseSrc.includes('?') ? '&' : '?';
+          frame.src = baseSrc + separator + 'refresh=' + Date.now();
+        });
+      }
+
+      window.setInterval(refreshAadsFrames, REFRESH_MS);
+    })();
+  </script>
+</body>
+</html>
